@@ -7,7 +7,7 @@ const Not_found = () => {
      <section className="bg-white dark:bg-gray-900">
   <div className="py-8 px-4 mx-auto max-w-screen-xl lg:pb-16 lg:px-6">
     <div className="mx-auto max-w-screen-sm text-center">
-        <img className="mx-auto" src="./image/not_found.jpg" alt="not_found" />
+        <img className="mx-auto" src="./images/not_found.jpg" alt="not_found" />
       <p className="my-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">
         Something's missing.
       </p>

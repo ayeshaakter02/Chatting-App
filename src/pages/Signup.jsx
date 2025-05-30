@@ -1,16 +1,97 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
+import toast, { Toaster } from 'react-hot-toast';
+import {createUserWithEmailAndPassword, getAuth} from "firebase/auth";
+ 
+const Signup = () => { 
 
-const Singup = () => {
+  const auth = getAuth();
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+const handleName = (e) => {
+    setUserInfo((prev) => {
+      return { ...prev, name: e.target.value };
+    });
+  };
+
+  const handleEmail = (e) => {
+    setUserInfo((prev) => {
+      return { ...prev, email: e.target.value };
+    });
+  };
+
+  const handlePassword = (e) =>{
+    setUserInfo ((prev) => {
+      return{...prev, password: e.target.value}
+    })
+  }
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+    if(!userInfo.name || !userInfo.email || !userInfo.password) {
+      toast.error("All fileds are required");
+    }else if(
+      !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(userInfo.email)
+    ) {
+      toast.error("Invalid email address");
+    } else {
+      toast.success("Done");
+      createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    // ...
+    console.log(user);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+    if(errorCode.include("auth/email-already-in-use")){
+      toast.error("Email already in use");
+       setUserInfo({
+        name: "",
+        email: "",
+        password: "",
+       })
+    }
+  });
+    }
+  };
+
   return (
-    <div className="flex min-h-full w-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat py-40">
-      <div className="container py-29">
+    <div className="flex min-h-full w-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat py-47">
+      <Toaster />
+      <div className="container">
         <div>
           <h2 className="mt-10 ml-10 text-2xl/9 font-bold tracking-tight text-white">
             Sign up
           </h2>
           <div className="mt-10 sm:ml-10 sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            <form onSubmit={handleSignup} className="space-y-6" method="POST">
+              <div>
+                <label
+                  htmlFor="text"
+                  className="block text-sm/6 font-medium text-white"
+                >
+                  User name
+                </label>
+                <div className="mt-2">
+                  <input value={userInfo.name}
+                    onChange={handleName}
+                    type="text"
+                    name="text"
+                    id="text"
+                    // autoComplete="text"
+                    required=""
+                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  />
+                </div>
+              </div>
               <div>
                 <label
                   htmlFor="email"
@@ -19,8 +100,9 @@ const Singup = () => {
                   Email address
                 </label>
                 <div className="mt-2">
-                  <input
-                    type="email"
+                  <input value={userInfo.email}
+                    onChange={handleEmail}
+                    type="text"
                     name="email"
                     id="email"
                     autoComplete="email"
@@ -47,7 +129,8 @@ const Singup = () => {
               </div> */}
                 </div>
                 <div className="mt-2">
-                  <input
+                  <input value={userInfo.password}
+                   onChange={handlePassword}
                     type="password"
                     name="password"
                     id="password"
@@ -81,4 +164,4 @@ const Singup = () => {
   );
 };
 
-export default Singup;
+export default Signup;
