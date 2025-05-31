@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
-import toast, { Toaster } from 'react-hot-toast';
-import {createUserWithEmailAndPassword, getAuth} from "firebase/auth";
- 
-const Signup = () => { 
+import toast, { Toaster } from "react-hot-toast";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
+import { useNavigate } from "react-router";
+import { app, auth } from "../firebase.config";
 
-  const auth = getAuth();
+const Signup = () => {
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
     password: "",
   });
+  
+  const navigate = useNavigate()
 
-const handleName = (e) => {
+  const handleName = (e) => {
     setUserInfo((prev) => {
       return { ...prev, name: e.target.value };
     });
@@ -24,42 +30,59 @@ const handleName = (e) => {
     });
   };
 
-  const handlePassword = (e) =>{
-    setUserInfo ((prev) => {
-      return{...prev, password: e.target.value}
-    })
-  }
+  const handlePassword = (e) => {
+    setUserInfo((prev) => {
+      return { ...prev, password: e.target.value };
+    });
+  };
 
   const handleSignup = (e) => {
     e.preventDefault();
-    if(!userInfo.name || !userInfo.email || !userInfo.password) {
+    if (!userInfo.name || !userInfo.email || !userInfo.password) {
       toast.error("All fileds are required");
-    }else if(
-      !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(userInfo.email)
-    ) {
+    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(userInfo.email)) {
       toast.error("Invalid email address");
     } else {
       toast.success("Done");
       createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    // ...
-    console.log(user);
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-    if(errorCode.include("auth/email-already-in-use")){
-      toast.error("Email already in use");
-       setUserInfo({
-        name: "",
-        email: "",
-        password: "",
-       })
-    }
-  });
+        .then((userCredential) => {
+          sendEmailVerification(auth.currentUser).then(() => {
+            updateProfile(auth.currentUser, {
+              displayName: userInfo.name,
+              photoURL: "https://example.com/jane-q-user/profile.jpg",
+            })
+              .then(() => {
+                // Profile updated!
+                // ...
+                // Signed up
+                const user = userCredential.user;
+                // ...
+                console.log(user);
+                // Email verification sent!
+                // ...
+                navigate('/')
+              })
+              .catch((error) => {
+                // An error occurred
+                // ...
+                console.log(error)
+              });
+           
+          });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+          if (errorCode.include("auth/email-already-in-use")) {
+            toast.error("Email already in use");
+            setUserInfo({
+              name: "",
+              email: "",
+              password: "",
+            });
+          }
+        });
     }
   };
 
@@ -81,7 +104,8 @@ const handleName = (e) => {
                   User name
                 </label>
                 <div className="mt-2">
-                  <input value={userInfo.name}
+                  <input
+                    value={userInfo.name}
                     onChange={handleName}
                     type="text"
                     name="text"
@@ -100,7 +124,8 @@ const handleName = (e) => {
                   Email address
                 </label>
                 <div className="mt-2">
-                  <input value={userInfo.email}
+                  <input
+                    value={userInfo.email}
                     onChange={handleEmail}
                     type="text"
                     name="email"
@@ -129,8 +154,9 @@ const handleName = (e) => {
               </div> */}
                 </div>
                 <div className="mt-2">
-                  <input value={userInfo.password}
-                   onChange={handlePassword}
+                  <input
+                    value={userInfo.password}
+                    onChange={handlePassword}
                     type="password"
                     name="password"
                     id="password"
@@ -149,10 +175,11 @@ const handleName = (e) => {
                 </button>
               </div>
             </form>
-            <p className="mt-10 text-center text-sm/6 text-gray-500">
+            <p className="mt-10 text-center text-sm/6 font-semibold text-gray-500">
+              Have an account yet?
               <Link
-                to={"/signin"}
-                className="font-semibold text-white hover:text-indigo-500"
+                to={"/"}
+                className="ml-2 font-semibold text-white hover:text-indigo-500"
               >
                 Sign in
               </Link>

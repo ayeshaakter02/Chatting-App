@@ -13,14 +13,16 @@ import Signin from './pages/Signin';
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<Home/>
+    element:<Signin/>
   },{
     path: "*",
     element:<Not_found/>
-  },{
-    path: "/signin",
-    element:<Signin/>
-  },{
+  },
+  {
+    path: "/home",
+    element:<Home/>
+  }
+  ,{
     path: "/signup",
     element:<Singup/>
   },
