@@ -87,10 +87,10 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex min-h-full w-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat py-47">
+    <div className="flex min-h-full w-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat py-37.5">
       <Toaster />
       <div className="container">
-        <div>
+        <div className="backdrop-blur-xl py-20 pl-8 w-130">
           <h2 className="mt-10 ml-10 text-2xl/9 font-bold tracking-tight text-white">
             Sign up
           </h2>
@@ -175,11 +175,11 @@ const Signup = () => {
                 </button>
               </div>
             </form>
-            <p className="mt-10 text-center text-sm/6 font-semibold text-gray-500">
+            <p className="mt-10 text-center text-sm/6 font-semibold text-gray-900">
               Have an account yet?
               <Link
-                to={"/"}
-                className="ml-2 font-semibold text-white hover:text-indigo-500"
+                to={"/signin"}
+                className="ml-2 font-semibold text-indigo-700 hover:text-indigo-300"
               >
                 Sign in
               </Link>

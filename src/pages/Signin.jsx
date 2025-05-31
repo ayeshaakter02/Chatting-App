@@ -60,11 +60,11 @@ const Signin = () => {
     }
   };
   return (
-    <div className="flex min-h-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat py-50">
+    <div className="flex min-h-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat py-40.5">
       <Toaster /> 
       <div className="container">
-        <div>
-          <div className="sm:w-full sm:max-w-sm">
+        <div className="backdrop-blur-xl py-20 pl-10 w-130">
+          <div className="sm:w-full sm:max-w-sm ">
             <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
               Sign in to your account
             </h2>
@@ -106,7 +106,7 @@ const Signin = () => {
                   <div className="text-sm">
                     <a
                       href="#"
-                      className="font-semibold text-indigo-500 hover:text-indigo-300"
+                      className="font-semibold text-indigo-700 hover:text-indigo-300"
                     >
                       Forgot password?
                     </a>
@@ -147,7 +147,7 @@ const Signin = () => {
               Don't have an account?
               <Link
                 to={"/signup"}
-                className="font-semibold text-indigo-500 hover:text-indigo-300"
+                className="font-semibold text-indigo-700 hover:text-indigo-300"
               >
                 Sign up
               </Link>

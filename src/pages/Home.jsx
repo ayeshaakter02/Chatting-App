@@ -1,8 +1,9 @@
 import React from 'react'
+import Userlist from '../components/Userlist'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <Userlist/>
   )
 }
 
