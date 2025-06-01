@@ -5,8 +5,12 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase.config";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { userSigninInfo } from "../slices/userSlice";
 
 const Signin = () => {
+  const dispatch = useDispatch();
+
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -36,7 +40,9 @@ const Signin = () => {
           // ...
           console.log(user);
           if(user.emailVerified){
-            navigate("/home")
+            dispatch(userSigninInfo(user));
+            localStorage.setItem("signin", JSON.stringify(user))
+            navigate("/")
           }else {
             toast.error("Please verify your email or password")
           }
@@ -45,7 +51,6 @@ const Signin = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          // ..
           if (errorCode.includes("auth/email-already-in-use")) {
             toast.error("Email already in use");
             toast.errror("invalid email or password")

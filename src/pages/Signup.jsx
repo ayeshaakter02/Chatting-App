@@ -60,14 +60,13 @@ const Signup = () => {
                 console.log(user);
                 // Email verification sent!
                 // ...
-                navigate('/')
+                navigate('/signin')
               })
               .catch((error) => {
                 // An error occurred
                 // ...
                 console.log(error)
               });
-           
           });
         })
         .catch((error) => {
