@@ -6,7 +6,7 @@ import { auth } from "../firebase.config";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { userSigninInfo } from "../slices/userSlice";
+import { userSigninInfo } from "../slices/userSlice.js";
 
 const Signin = () => {
   const dispatch = useDispatch();
@@ -40,13 +40,12 @@ const Signin = () => {
           // ...
           console.log(user);
           if(user.emailVerified){
-            dispatch(userSigninInfo(user));
-            localStorage.setItem("signin", JSON.stringify(user))
+            dispatch(userSigninInfo(user)); //set data in redux
+            // localStorage.setItem("signin", JSON.stringify(user)) //localstorage
             navigate("/")
           }else {
             toast.error("Please verify your email or password")
-          }
-          
+          } 
         })
         .catch((error) => {
           const errorCode = error.code;
