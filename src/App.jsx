@@ -5,10 +5,9 @@ import {
 } from "react-router";
 import Not_found from './pages/Not_found';
 import Home from './pages/Home';
-import Singup from './pages/Signup';
 import Signin from './pages/Signin';
 import Rootlayout from './components/Rootlayout';
-import Massage from './pages/Massage';
+import Message from './pages/Message';
 import Signup from './pages/Signup';
 
 
@@ -19,7 +18,7 @@ const router =createBrowserRouter([
     Component: Rootlayout,
     children: [
       { index: true, Component: Home },
-      { path: "message", Component: Massage },
+      { path: "/message", Component: Message },
     ],
   },
   {

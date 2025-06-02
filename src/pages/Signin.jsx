@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 import { FcGoogle } from "react-icons/fc";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../firebase.config";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router";
@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { userSigninInfo } from "../slices/userSlice.js";
 
 const Signin = () => {
+  const provider = new GoogleAuthProvider();
   const dispatch = useDispatch();
 
   const [userInfo, setUserInfo] = useState({
@@ -63,6 +64,20 @@ const Signin = () => {
       alert("email & password is required");
     }
   };
+
+  const handleGoogleSignin =()=>{
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    const user = result.user;
+    dispatch(userSigninInfo(user));
+    navigate("/")
+  }).catch((error) => {
+    //Handle errors here
+    const errorCode = error.code;
+    console.log(errorCode)
+  });
+  }
+
   return (
     <div className="flex min-h-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat py-40.5">
       <Toaster /> 
@@ -138,9 +153,9 @@ const Signin = () => {
                 <p className="mt-2 flex justify-center text-lg font-semibold">
                   or
                 </p>
-                <button
-                  type="submit"
-                  className="mx-auto mt-2 flex items-center font-semibold"
+                <button onClick={handleGoogleSignin}
+                type="submit"
+                  className="mx-auto mt-2 flex items-center font-semibold cursor-pointer"
                 >
                   <FcGoogle className="mr-2 text-xl" />
                   Continue with google
