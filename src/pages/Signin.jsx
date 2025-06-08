@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 import { FcGoogle } from "react-icons/fc";
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 import { auth } from "../firebase.config";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { userSigninInfo } from "../slices/userSlice.js";
+import { getDatabase, ref, set } from "firebase/database";
 
 const Signin = () => {
   const provider = new GoogleAuthProvider();
@@ -16,8 +21,10 @@ const Signin = () => {
     email: "",
     password: "",
   });
+  const db = getDatabase();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const handleEmail = (e) => {
     setUserInfo((prev) => {
       return { ...prev, email: e.target.value };
@@ -40,20 +47,19 @@ const Signin = () => {
           const user = userCredential.user;
           // ...
           console.log(user);
-          if(user.emailVerified){
+          if (user.emailVerified) {
             dispatch(userSigninInfo(user)); //set data in redux
-            // localStorage.setItem("signin", JSON.stringify(user)) //localstorage
-            navigate("/")
-          }else {
-            toast.error("Please verify your email or password")
-          } 
+            navigate("/");
+          } else {
+            toast.error("Please verify your email or password");
+          }
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           if (errorCode.includes("auth/email-already-in-use")) {
             toast.error("Email already in use");
-            toast.errror("invalid email or password")
+            toast.errror("invalid email or password");
             setUserInfo({
               email: "",
               password: "",
@@ -65,25 +71,38 @@ const Signin = () => {
     }
   };
 
-  const handleGoogleSignin =()=>{
+  const handleGoogleSignin = () => {
     signInWithPopup(auth, provider)
-  .then((result) => {
-    const user = result.user;
-    dispatch(userSigninInfo(user));
-    navigate("/")
-  }).catch((error) => {
-    //Handle errors here
-    const errorCode = error.code;
-    console.log(errorCode)
-  });
-  }
+      .then((result) => {
+        const user = result.user;
+
+        set(ref(db, "userslist/" + user.uid), {
+          name: user.displayName,
+          email: user.email,
+        })
+          .then(() => {
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        dispatch(userSigninInfo(user));
+        navigate("/");
+      })
+      .catch((error) => {
+        //Handle errors here
+        const errorCode = error.code;
+        console.log(errorCode);
+      });
+  };
 
   return (
     <div className="flex min-h-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat py-40.5">
-      <Toaster /> 
+      <Toaster />
       <div className="container">
-        <div className="backdrop-blur-xl py-20 pl-10 w-130">
-          <div className="sm:w-full sm:max-w-sm ">
+        <div className="w-130 py-20 pl-10 backdrop-blur-xl">
+          <div className="sm:w-full sm:max-w-sm">
             <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
               Sign in to your account
             </h2>
@@ -153,9 +172,10 @@ const Signin = () => {
                 <p className="mt-2 flex justify-center text-lg font-semibold">
                   or
                 </p>
-                <button onClick={handleGoogleSignin}
-                type="submit"
-                  className="mx-auto mt-2 flex items-center font-semibold cursor-pointer"
+                <button
+                  onClick={handleGoogleSignin}
+                  type="submit"
+                  className="mx-auto mt-2 flex cursor-pointer items-center font-semibold"
                 >
                   <FcGoogle className="mr-2 text-xl" />
                   Continue with google

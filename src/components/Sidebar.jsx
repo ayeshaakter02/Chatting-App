@@ -1,13 +1,15 @@
-import { getAuth, onAuthStateChanged, signOut} from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { userSigninInfo } from "../slices/userSlice";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const auth = getAuth();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.userSignin.value);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -30,13 +32,15 @@ const Sidebar = () => {
     });
   }, [dispatch]);
 
-  const handleLogout=()=>{
-    signOut(auth).then(() => {
-navigate("/signin")
-}).catch((error) => {
-  alert(error);
-});
-  }
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        navigate("/signin");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
   return (
     <>
       <div
@@ -54,7 +58,7 @@ navigate("/signin")
               href="#"
               aria-label="Brand"
             >
-              Brand
+              {user.name}
             </a>
             <div className="-me-2 lg:hidden">
               {/* Close Button */}
@@ -540,15 +544,18 @@ navigate("/signin")
                   </a>
                 </li>
                 <li>
-                  <button onClick={handleLogout}
-                  className="flex w-full items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 cursor-pointer">
+                  <button
+                    onClick={handleLogout}
+                    className="flex w-full cursor-pointer items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                  >
                     <svg
                       className="size-4"
                       xmlns="http://www.w3.org/2000/svg"
                       width={24}
                       height={24}
                       viewBox="0 0 24 24"
-                      fill="none"xc
+                      fill="none"
+                      xc
                       stroke="currentColor"
                       strokeWidth={2}
                       strokeLinecap="round"

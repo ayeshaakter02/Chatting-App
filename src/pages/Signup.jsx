@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { app, auth } from "../firebase.config";
+import { getDatabase, ref, set } from "firebase/database";
 
 const Signup = () => {
   const [userInfo, setUserInfo] = useState({
@@ -15,8 +16,9 @@ const Signup = () => {
     email: "",
     password: "",
   });
-  
-  const navigate = useNavigate()
+
+  const db = getDatabase();
+  const navigate = useNavigate();
 
   const handleName = (e) => {
     setUserInfo((prev) => {
@@ -52,20 +54,22 @@ const Signup = () => {
               photoURL: "https://example.com/jane-q-user/profile.jpg",
             })
               .then(() => {
-                // Profile updated!
-                // ...
-                // Signed up
                 const user = userCredential.user;
-                // ...
-                console.log(user);
-                // Email verification sent!
-                // ...
-                navigate('/signin')
+
+                set(ref(db, "userslist/" + user.uid), {
+                  name:user.displayName,
+                  email: user.email,
+                }).then(() => {
+                  navigate("/signin")
+                }).catch((error) => {
+                console.log(error);
+              })
+              
               })
               .catch((error) => {
                 // An error occurred
                 // ...
-                console.log(error)
+                console.log(error);
               });
           });
         })
@@ -89,7 +93,7 @@ const Signup = () => {
     <div className="flex min-h-full w-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat py-37.5">
       <Toaster />
       <div className="container">
-        <div className="backdrop-blur-xl py-20 pl-8 w-130">
+        <div className="w-130 py-20 pl-8 backdrop-blur-xl">
           <h2 className="mt-10 ml-10 text-2xl/9 font-bold tracking-tight text-white">
             Sign up
           </h2>
@@ -178,7 +182,7 @@ const Signup = () => {
               Have an account yet?
               <Link
                 to={"/signin"}
-                className="ml-2 font-semibold text-indigo-700 hover:text-indigo-300"
+                className="ml-2 font-semibold text-indigo-300 hover:text-indigo-700"
               >
                 Sign in
               </Link>
