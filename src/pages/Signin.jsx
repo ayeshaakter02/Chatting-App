@@ -98,7 +98,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="flex min-h-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat py-40.5">
+    <div className="flex min-h-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat h-screen">
       <Toaster />
       <div className="container">
         <div className="w-130 py-20 pl-10 backdrop-blur-xl">

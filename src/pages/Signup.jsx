@@ -90,7 +90,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex min-h-full w-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat py-37.5">
+    <div className="flex min-h-full w-full flex-col justify-center bg-[url('images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat h-screen">
       <Toaster />
       <div className="container">
         <div className="w-130 py-20 pl-8 backdrop-blur-xl">

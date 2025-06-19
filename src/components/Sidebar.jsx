@@ -58,7 +58,7 @@ const Sidebar = () => {
               href="#"
               aria-label="Brand"
             >
-              {user.name}
+              {user?.name}
             </a>
             <div className="-me-2 lg:hidden">
               {/* Close Button */}

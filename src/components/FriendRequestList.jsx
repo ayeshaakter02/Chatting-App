@@ -1,44 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { GoPlus } from "react-icons/go";
-import { getDatabase, ref, onValue, set, push } from "firebase/database";
+import { getDatabase, ref, onValue } from "firebase/database";
 import { auth } from "../firebase.config";
-// import FriendRequestList from "./FriendRequestList";
-const Userlist = () => {
-  const [userList, setUserList] = useState([]);
+
+const FriendRequestList = () => {
   const db = getDatabase();
+  const [requestList, setRequestList] = useState([]);
 
   useEffect(() => {
-    const userListRef = ref(db, "userslist/");
-    onValue(userListRef, (snapshot) => {
+    const requestRef = ref(db, "friendrequestList/");
+    onValue(requestRef, (snapshot) => {
       const array = [];
       snapshot.forEach((item) => {
-        if (item.key != auth.currentUser.uid) {
-          array.push({ ...item.val(), id: item.key });
-        }
+        array.push(item.val());
       });
-      setUserList(array);
+      setRequestList(array);
     });
   }, []);
 
-  const handleFriendrequest = (item) => {
-    set(push(ref(db, "friendrequestList/")), {
-      sendername: auth.currentUser.displayName,
-      senderid: auth.currentUser.uid,
-      recivername: item.name,
-      reciverid: item.id,
-    }).then(() => {
-      console.log("friendrequest");
-    });
-  };
-
   return (
     <>
+      {/* component */}
       {/* This is an example component */}
       <div>
         <div className="max-w-md rounded-lg border bg-white p-4 shadow-md sm:p-8 dark:border-gray-700 dark:bg-gray-800">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-xl leading-none font-bold text-gray-900 dark:text-white">
-              User List
+              Friend Request List
             </h3>
             <a
               href="#"
@@ -52,8 +40,7 @@ const Userlist = () => {
               role="list"
               className="h-[300px] divide-y divide-gray-200 overflow-y-scroll dark:divide-gray-700"
             >
-              {userList.map((item) => {
-                return (
+              {requestList.map((item) => (
                   <li className="py-3 sm:py-4">
                     <div className="flex items-center space-x-4">
                       <div className="flex-shrink-0">
@@ -64,23 +51,20 @@ const Userlist = () => {
                         />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-xl font-medium text-gray-900">
-                          {item.name}
+                        <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                          {item.sendername}
                         </p>
-                        <p className="text-md truncate text-gray-500">
-                          {item.email}
+                        <p className="truncate text-sm text-gray-500 dark:text-gray-400">
+                          njmvbjhhkj
                         </p>
                       </div>
-                      <button
-                        onClick={() => handleFriendrequest(item)}
-                        className="bg-blue-500 p-1 text-xl text-white"
-                      >
+                      <div className="bg-blue-500 p-1 text-xl text-white">
                         <GoPlus />
-                      </button>
+                      </div>
                     </div>
                   </li>
-                );
-              })}
+                )
+              )}
             </ul>
           </div>
         </div>
@@ -89,4 +73,4 @@ const Userlist = () => {
   );
 };
 
-export default Userlist;
+export default FriendRequestList;
