@@ -1,6 +1,7 @@
 import React from "react";
 import Userlist from "../components/Userlist";
 import FriendRequestList from "../components/FriendRequestList";
+import FriendList from "../components/FriendList";
 // import { useSelector } from 'react-redux'
 
 const Home = () => {
@@ -13,9 +14,10 @@ const Home = () => {
   //   }
   // } ,[]);
   return (
-    <div className="flex gap-10">
+    <div className="grid grid-cols-3 w-full h-[1000px]">
       <FriendRequestList />
-      <Userlist />      
+      <Userlist />
+      <FriendList/>  
     </div>
   );
 };

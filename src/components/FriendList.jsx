@@ -1,40 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { GoPlus } from "react-icons/go";
-import { getDatabase, ref, onValue, set, push, remove } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  onValue,
+  set,
+  push,
+  remove,
+} from "firebase/database";
 import { auth } from "../firebase.config";
 
-const FriendRequestList = () => {
+const FriendList = () => {
   const db = getDatabase();
   const [requestList, setRequestList] = useState([]);
 
   useEffect(() => {
-    const requestRef = ref(db, "friendrequestList/");
+    const requestRef = ref(db, "friendList/");
     onValue(requestRef, (snapshot) => {
       const array = [];
       snapshot.forEach((item) => {
-        if (auth.currentUser.uid == item.val().reciverid) {
-          array.push({...item.val(), id: item.key});
+        if (
+          auth.currentUser.uid == item.val().senderid ||
+          auth.currentUser.uid == item.val().reciverid
+        ) {
+          array.push({ ...item.val(), id: item.key });
         }
       });
       setRequestList(array);
     });
   }, []);
-
-  const handleFriendAccept = (item) => {
-    set(push(ref(db, "friendList/")), {
-        ...item,
-        }).then(() => {
-          remove(ref(db, "friendrequestList/" + item.id))
-        });
-  }
-
-  const handleFriendDelete = (item) => {
-    set(push(ref(db, "deletelist/")), {
-        ...item,
-        }).then(() => {
-          remove(ref(db, "friendrequestList/" + item.id))
-        });
-  }
 
   return (
     <>
@@ -44,7 +38,7 @@ const FriendRequestList = () => {
         <div className="max-w-md rounded-lg border bg-white p-4 shadow-md sm:p-8 dark:border-gray-700 dark:bg-gray-800">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-xl leading-none font-bold text-gray-900 dark:text-white">
-              Friend Request List
+              Friend List
             </h3>
             <a
               href="#"
@@ -69,19 +63,26 @@ const FriendRequestList = () => {
                       />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                        {item.sendername}
-                      </p>
+                      {auth.currentUser.uid == item.senderid ? (
+                        <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                          {item.recivername}
+                        </p>
+                      ) : (
+                        <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                          {item.sendername}
+                        </p>
+                      )}
+
                       <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                        Email
+                        njmvbjhhkj
                       </p>
                     </div>
                     <div className="flex gap-2">
-                      <button onClick={()=>handleFriendAccept(item)} className="bg-blue-500 p-1 text-xl text-white">
-                        Accept
-                      </button>
-                      <button onClick={()=>handleFriendDelete(item)} className="bg-blue-500 p-1 text-xl text-white">
-                        Delete
+                      <button
+                        
+                        className="bg-blue-500 p-1 text-xl text-white"
+                      >
+                       Block
                       </button>
                     </div>
                   </div>
@@ -95,4 +96,4 @@ const FriendRequestList = () => {
   );
 };
 
-export default FriendRequestList;
+export default FriendList;

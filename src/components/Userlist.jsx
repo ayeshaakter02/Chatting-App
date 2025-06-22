@@ -5,6 +5,9 @@ import { auth } from "../firebase.config";
 // import FriendRequestList from "./FriendRequestList";
 const Userlist = () => {
   const [userList, setUserList] = useState([]);
+  const [checkRequestId, setCheckRequestId] = useState([]);
+  const [checkFriendId, setCheckFriendId] = useState([]);
+
   const db = getDatabase();
 
   useEffect(() => {
@@ -19,6 +22,30 @@ const Userlist = () => {
       setUserList(array);
     });
   }, []);
+
+  //check request
+  useEffect(() => {
+    const requestRef = ref(db, "friendrequestList/");
+    onValue(requestRef, (snapshot) => {
+      const array = [];
+      snapshot.forEach((item) => {
+        array.push(item.val().senderid + item.val().reciverid);
+      });
+      setCheckRequestId(array);
+    });
+  }, []);
+
+  useEffect(() => {
+    const requestRef = ref(db, "friendList/");
+    onValue(requestRef, (snapshot) => {
+      const array = [];
+      snapshot.forEach((item) => {
+        array.push(item.val().senderid + item.val().reciverid);
+      });
+      setCheckFriendId(array);
+    });
+  }, []);
+
 
   const handleFriendrequest = (item) => {
     set(push(ref(db, "friendrequestList/")), {
@@ -71,12 +98,34 @@ const Userlist = () => {
                           {item.email}
                         </p>
                       </div>
-                      <button
-                        onClick={() => handleFriendrequest(item)}
-                        className="bg-blue-500 p-1 text-xl text-white"
-                      >
-                        <GoPlus />
+                      {checkFriendId.includes(
+                        auth.currentUser.uid + item.id,
+                      ) ||
+                      checkFriendId.includes(
+                        item.id + auth.currentUser.uid,
+                      ) ? (
+                        <button className="bg-blue-500 p-1 text-xl text-white">
+                        Friend
                       </button>
+                      ) :
+                      
+                      checkRequestId.includes(
+                        auth.currentUser.uid + item.id,
+                      ) ||
+                      checkRequestId.includes(
+                        item.id + auth.currentUser.uid,
+                      ) ? (
+                        <button className="bg-blue-500 p-1 text-xl text-white">
+                        Requested
+                      </button>
+                      ) : (
+                        <button
+                          onClick={() => handleFriendrequest(item)}
+                          className="bg-blue-500 p-1 text-xl text-white"
+                        >
+                          <GoPlus />
+                        </button>
+                      )}
                     </div>
                   </li>
                 );
