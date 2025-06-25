@@ -2,10 +2,12 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { userSigninInfo } from "../slices/userSlice";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router";
 
 const Sidebar = () => {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const auth = getAuth();
   const dispatch = useDispatch();
@@ -96,9 +98,8 @@ const Sidebar = () => {
             >
               <ul className="space-y-1">
                 <li>
-                  <a
-                    className="flex items-center gap-x-3.5 rounded-lg bg-gray-100 px-2.5 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                    href="#"
+                  <Link to="/"
+                    className={`flex items-center gap-x-3 px-2.5 py-2 ${pathname == "/" && "bg-blue-500 text-white"} rounded-lg text-sm text-gray-800 focus:outline-hidden`}
                   >
                     <svg
                       className="size-4"
@@ -116,12 +117,12 @@ const Sidebar = () => {
                       <polyline points="9 22 9 12 15 12 15 22" />
                     </svg>
                     Dashboard
-                  </a>
+                  </Link>
                 </li>
                 <li className="hs-accordion" id="users-accordion">
-                  <button
+                  <Link to="/message"
                     type="button"
-                    className="hs-accordion-toggle flex w-full items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-start text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                    className={`flex items-center gap-x-3 px-2.5 py-2 ${pathname == "/message" && "bg-blue-500 text-white"} rounded-lg text-sm text-gray-800   focus:outline-hidden`}
                     aria-expanded="true"
                     aria-controls="users-accordion-collapse-1"
                   >
@@ -142,7 +143,7 @@ const Sidebar = () => {
                       <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
                       <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                     </svg>
-                    Users
+                    Message
                     <svg
                       className="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
                       xmlns="http://www.w3.org/2000/svg"
@@ -157,21 +158,7 @@ const Sidebar = () => {
                     >
                       <path d="m18 15-6-6-6 6" />
                     </svg>
-                    <svg
-                      className="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="m6 9 6 6 6-6" />
-                    </svg>
-                  </button>
+                  </Link>
                   <div
                     id="users-accordion-collapse-1"
                     className="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300"

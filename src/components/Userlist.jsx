@@ -7,6 +7,7 @@ const Userlist = () => {
   const [userList, setUserList] = useState([]);
   const [checkRequestId, setCheckRequestId] = useState([]);
   const [checkFriendId, setCheckFriendId] = useState([]);
+  const [checkBlockId, setCheckBlockId] = useState([]);
 
   const db = getDatabase();
 
@@ -35,6 +36,7 @@ const Userlist = () => {
     });
   }, []);
 
+  //check friend
   useEffect(() => {
     const requestRef = ref(db, "friendList/");
     onValue(requestRef, (snapshot) => {
@@ -46,6 +48,17 @@ const Userlist = () => {
     });
   }, []);
 
+  //check block
+  useEffect(() => {
+    const requestRef = ref(db, "blockList/");
+    onValue(requestRef, (snapshot) => {
+      const array = [];
+      snapshot.forEach((item) => {
+        array.push(item.val().blockbyuser + item.val().blockuser);
+      });
+      setCheckBlockId(array);
+    });
+  }, []);
 
   const handleFriendrequest = (item) => {
     set(push(ref(db, "friendrequestList/")), {
@@ -77,56 +90,103 @@ const Userlist = () => {
           <div className="flow-root">
             <ul
               role="list"
-              className="h-[300px] divide-y divide-gray-200 overflow-y-scroll dark:divide-gray-700"
+              className="h-[300px] overflow-y-scroll "
             >
               {userList.map((item) => {
                 return (
                   <li className="py-3 sm:py-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex-shrink-0">
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
-                          alt="Neil image"
-                        />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate text-xl font-medium text-gray-900">
-                          {item.name}
-                        </p>
-                        <p className="text-md truncate text-gray-500">
-                          {item.email}
-                        </p>
-                      </div>
-                      {checkFriendId.includes(
-                        auth.currentUser.uid + item.id,
-                      ) ||
-                      checkFriendId.includes(
-                        item.id + auth.currentUser.uid,
-                      ) ? (
-                        <button className="bg-blue-500 p-1 text-xl text-white">
-                        Friend
-                      </button>
-                      ) :
-                      
-                      checkRequestId.includes(
-                        auth.currentUser.uid + item.id,
-                      ) ||
-                      checkRequestId.includes(
-                        item.id + auth.currentUser.uid,
-                      ) ? (
-                        <button className="bg-blue-500 p-1 text-xl text-white">
-                        Requested
-                      </button>
-                      ) : (
-                        <button
-                          onClick={() => handleFriendrequest(item)}
-                          className="bg-blue-500 p-1 text-xl text-white"
-                        >
-                          <GoPlus />
+                    {checkFriendId.includes(auth.currentUser.uid + item.id) ||
+                    checkFriendId.includes(item.id + auth.currentUser.uid) ? (
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-shrink-0">
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
+                            alt="Neil image"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-xl font-medium text-gray-900">
+                            {item.name}
+                          </p>
+                          <p className="text-md truncate text-gray-500">
+                            {item.email}
+                          </p>
+                        </div>
+                        <button className="bg-blue-500 p-1 text-lg text-white">
+                          Friend
                         </button>
-                      )}
-                    </div>
+                      </div>
+                    ) : checkRequestId.includes(
+                        auth.currentUser.uid + item.id,
+                      ) ||
+                      checkRequestId.includes(
+                        item.id + auth.currentUser.uid,
+                      ) ? (
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-shrink-0">
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
+                            alt="Neil image"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-xl font-medium text-gray-900">
+                            {item.name}
+                          </p>
+                          <p className="text-md truncate text-gray-500">
+                            {item.email}
+                          </p>
+                        </div>
+                        <button className="bg-blue-500 p-1 text-lg text-white">
+                          Requested
+                        </button>
+                      </div>
+                    ) : checkBlockId.includes(auth.currentUser.uid + item.id) ||
+                      checkBlockId.includes(item.id + auth.currentUser.uid) ? (
+                      <div className="hidden items-center space-x-4">
+                        <div className="flex-shrink-0">
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
+                            alt="Neil image"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-xl font-medium text-gray-900">
+                            {item.name}
+                          </p>
+                          <p className="text-md truncate text-gray-500">
+                            {item.email}
+                          </p>
+                        </div>
+                        <button className="bg-blue-500 p-1 text-lg text-white">
+                          Friend
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-shrink-0">
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
+                            alt="Neil image"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-xl font-medium text-gray-900">
+                            {item.name}
+                          </p>
+                          <p className="text-md truncate text-gray-500">
+                            {item.email}
+                          </p>
+                        </div>
+                        <button className="bg-blue-500 p-1 text-lg text-white">
+                          {GoPlus}
+                        </button>
+                      </div>
+                    )}
                   </li>
                 );
               })}
@@ -139,3 +199,23 @@ const Userlist = () => {
 };
 
 export default Userlist;
+
+{
+  /* <div className="flex">
+                          <div className="flex-shrink-0">
+                            <img
+                              className="h-8 w-8 rounded-full"
+                              src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
+                              alt="Neil image"
+                            />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate text-xl font-medium text-gray-900">
+                              {item.name}
+                            </p>
+                            <p className="text-md truncate text-gray-500">
+                              {item.email}
+                            </p>
+                          </div>
+                        </div> */
+}

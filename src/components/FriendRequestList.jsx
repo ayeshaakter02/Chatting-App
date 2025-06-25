@@ -77,10 +77,10 @@ const FriendRequestList = () => {
                       </p>
                     </div>
                     <div className="flex gap-2">
-                      <button onClick={()=>handleFriendAccept(item)} className="bg-blue-500 p-1 text-xl text-white">
+                      <button onClick={()=>handleFriendAccept(item)} className="bg-blue-500 p-1 text-lg text-white">
                         Accept
                       </button>
-                      <button onClick={()=>handleFriendDelete(item)} className="bg-blue-500 p-1 text-xl text-white">
+                      <button onClick={()=>handleFriendDelete(item)} className="bg-blue-500 p-1 text-lg text-white">
                         Delete
                       </button>
                     </div>

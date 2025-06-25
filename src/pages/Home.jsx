@@ -2,6 +2,7 @@ import React from "react";
 import Userlist from "../components/Userlist";
 import FriendRequestList from "../components/FriendRequestList";
 import FriendList from "../components/FriendList";
+import BlockList from "../components/Blocklist";
 // import { useSelector } from 'react-redux'
 
 const Home = () => {
@@ -14,10 +15,11 @@ const Home = () => {
   //   }
   // } ,[]);
   return (
-    <div className="grid grid-cols-3 w-full h-[1000px]">
+    <div className="grid h-[1000px] w-full grid-cols-3 mt-5 gap-2">
+      <FriendList />
       <FriendRequestList />
       <Userlist />
-      <FriendList/>  
+      <BlockList />
     </div>
   );
 };

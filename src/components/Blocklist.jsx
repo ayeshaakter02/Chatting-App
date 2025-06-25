@@ -10,49 +10,47 @@ import {
 } from "firebase/database";
 import { auth } from "../firebase.config";
 
-const FriendList = () => {
+const BlockList = () => {
   const db = getDatabase();
-  const [requestList, setRequestList] = useState([]);
+  const [blockList, setBlockList] = useState([]);
 
   useEffect(() => {
-    const requestRef = ref(db, "friendList/");
+    const requestRef = ref(db, "blockList/");
     onValue(requestRef, (snapshot) => {
       const array = [];
       snapshot.forEach((item) => {
         if (
-          auth.currentUser.uid == item.val().senderid ||
-          auth.currentUser.uid == item.val().reciverid
-        ) {
-          array.push({ ...item.val(), id: item.key });
+          auth.currentUser.uid == item.val().blockbyuser 
+        ){
+            array.push({ ...item.val(), id: item.key });
         }
+          
       });
-      setRequestList(array);
+      setBlockList(array);
     });
   }, []);
 
-  const handleBlock = (item) => {
-    if (auth.currentUser.uid == item.senderid) {
-      console.log("reciver", item);
-      set(push(ref(db, "blockList/")), {
-        blockbyuser: item.senderid,
-        blockbyusername: item.sendername,
-        blockuser: item.reciverid,
-        blockusername: item.recivername,
-      }).then(() => {
-        remove(ref(db, "friendList/" + item.id));
-      });
-    } else {
-      console.log("sender", item);  
-      set(push(ref(db, "blockList/")), {
-        blockbyuser: item.reciverid,
-        blockbyusername: item.recivername,
-        blockuser: item.senderid,
-        blockusername: item.sendername,
-      }).then(() => {
-        remove(ref(db, "friendList/" + item.id));
-      });
+  const handleUnblock = (item) =>{
+    if(auth.currentUser.uid == item.blockbyuser) {
+      set(push(ref(db, "friendList/")), {
+              senderid: item.blockbyuser,
+              sendername: item.blockbyusername,
+              reciverid: item.blockuser,
+              recivername: item.blockusername,
+            }).then(() => {
+              remove(ref(db, "blockList/" + item.id));
+            });
+    }else{
+      set(push(ref(db, "friendList/")), {
+              senderid: item.blockuser,
+              sendername: item.blockusername,
+              reciverid: item.blockbyuser,
+              recivername: item.blockbyusername,
+            }).then(() => {
+              remove(ref(db, "blockList/" + item.id));
+            });
     }
-  };
+  }
 
   return (
     <>
@@ -62,7 +60,7 @@ const FriendList = () => {
         <div className="max-w-md rounded-lg border bg-white p-4 shadow-md sm:p-8 dark:border-gray-700 dark:bg-gray-800">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-xl leading-none font-bold text-gray-900 dark:text-white">
-              Friend List
+              Block List
             </h3>
             <a
               href="#"
@@ -76,7 +74,7 @@ const FriendList = () => {
               role="list"
               className="h-[300px] divide-y divide-gray-200 overflow-y-scroll dark:divide-gray-700"
             >
-              {requestList.map((item) => (
+              {blockList.map((item) => (
                 <li className="py-3 sm:py-4">
                   <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0">
@@ -87,13 +85,13 @@ const FriendList = () => {
                       />
                     </div>
                     <div className="min-w-0 flex-1">
-                      {auth.currentUser.uid == item.senderid ? (
+                      {auth.currentUser.uid == item.blockbyuser ? (
                         <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                          {item.recivername}
+                          {item.blockusername}
                         </p>
                       ) : (
                         <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                          {item.sendername}
+                          {item.blockbyusername}
                         </p>
                       )}
 
@@ -102,11 +100,8 @@ const FriendList = () => {
                       </p>
                     </div>
                     <div className="flex gap-2">
-                      <button
-                        onClick={() => handleBlock(item)}
-                        className="bg-blue-500 p-1 text-lg text-white"
-                      >
-                        Block
+                      <button onClick={()=>handleUnblock(item)} className="bg-blue-500 p-1 text-lg text-white">
+                        Unblock
                       </button>
                     </div>
                   </div>
@@ -120,4 +115,4 @@ const FriendList = () => {
   );
 };
 
-export default FriendList;
+export default BlockList;
