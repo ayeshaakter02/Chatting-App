@@ -15,7 +15,7 @@ const Home = () => {
   //   }
   // } ,[]);
   return (
-    <div className="grid h-[1000px] w-full grid-cols-3 mt-5 gap-2">
+    <div className="grid w-full grid-cols-3 mt-5 gap-2">
       <FriendList />
       <FriendRequestList />
       <Userlist />

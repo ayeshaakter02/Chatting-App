@@ -41,14 +41,14 @@ const FriendRequestList = () => {
       {/* component */}
       {/* This is an example component */}
       <div>
-        <div className="max-w-md rounded-lg border bg-white p-4 shadow-md sm:p-8 dark:border-gray-700 dark:bg-gray-800">
+        <div className="max-w-md rounded-lg border p-4 shadow-md sm:p-8 dark:border-gray-700 dark:bg-gray-800 backdrop-blur-xl">
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-xl leading-none font-bold text-gray-900 dark:text-white">
+            <h3 className="text-xl leading-none font-bold text-white dark:text-white">
               Friend Request List
             </h3>
             <a
               href="#"
-              className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
+              className="text-sm font-medium text-indigo-700 hover:underline dark:text-blue-500"
             >
               View all
             </a>
@@ -69,18 +69,18 @@ const FriendRequestList = () => {
                       />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                      <p className="truncate text-sm font-medium text-white dark:text-white">
                         {item.sendername}
                       </p>
-                      <p className="truncate text-sm text-gray-500 dark:text-gray-400">
+                      <p className="truncate text-sm text-white dark:text-gray-400">
                         Email
                       </p>
                     </div>
                     <div className="flex gap-2">
-                      <button onClick={()=>handleFriendAccept(item)} className="bg-blue-500 p-1 text-lg text-white">
+                      <button onClick={()=>handleFriendAccept(item)} className="bg-blue-500 p-1 text-lg text-white rounded-sm">
                         Accept
                       </button>
-                      <button onClick={()=>handleFriendDelete(item)} className="bg-blue-500 p-1 text-lg text-white">
+                      <button onClick={()=>handleFriendDelete(item)} className="bg-blue-500 p-1 text-lg text-white rounded-sm mr-2">
                         Delete
                       </button>
                     </div>

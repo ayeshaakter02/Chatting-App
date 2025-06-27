@@ -1,33 +1,34 @@
 import React from "react";
 import FriendMessageList from "../components/FriendListmsg";
-
+import { useSelector } from "react-redux";
+import FriendListmsg from "../components/FriendListmsg";
 const Message = () => {
+  const user = useSelector((state) => state.chatInfo.value);
+  console.log(user);
   return (
     <>
       {/* component */}
       {/* This is an example component */}
-      <div className=" mx-auto rounded-lg shadow-lg">
+      <div className="w-full mx-auto rounded-lg shadow-lg ">
         {/* headaer */}
-        <div className="flex items-center justify-between border-b-2 bg-white px-5 py-5">
-          <div className="text-2xl font-semibold">GoingChat</div>
-          <div className="w-1/2">
+        <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5 backdrop-blur-xl">
+          <div className="text-pink-600 text-2xl font-semibold">GoingChat</div>
+          <div className="w-1/2 ">
             <input
               type="text"
               name=""
               id=""
               placeholder="search IRL"
-              className="w-full rounded-2xl bg-gray-100 px-5 py-3"
+              className="w-full rounded-2xl bg-pink-200 px-5 py-3"
             />
           </div>
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 p-2 font-semibold text-white">
-            RA
-          </div>
+          <h1 className="text-pink-600 text-2xl font-medium">{user?.name}</h1>
         </div>
         {/* end header */}
         {/* Chatting */}
-        <div className="flex flex-row justify-between bg-white">
+        <div className="flex flex-row justify-between backdrop-blur-xl">
           {/* chat list */}
-          <FriendMessageList/>
+          <FriendListmsg/>
           {/* end chat list */}
           {/* message */}
           <div className="flex w-full flex-col justify-between px-5">
@@ -92,7 +93,7 @@ const Message = () => {
             </div>
           </div>
           {/* end message */}
-          <div className="w-2/5 border-l-2 px-5">
+          <div className="w-2/5 border-l-2 border-indigo-400 px-5">
             <div className="flex flex-col">
               <div className="py-4 text-xl font-semibold">Mern Stack Group</div>
               <img
