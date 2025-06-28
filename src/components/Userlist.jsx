@@ -29,7 +29,7 @@ const Userlist = () => {
     onValue(requestRef, (snapshot) => {
       const array = [];
       snapshot.forEach((item) => {
-        array.push(item.val().senderid + item.val().reciverid);
+        array.push(item.val().senderid + item.val().receiverid);
       });
       setCheckRequestId(array);
     });
@@ -41,7 +41,7 @@ const Userlist = () => {
     onValue(requestRef, (snapshot) => {
       const array = [];
       snapshot.forEach((item) => {
-        array.push(item.val().senderid + item.val().reciverid);
+        array.push(item.val().senderid + item.val().receiverid);
       });
       setCheckFriendId(array);
     });
@@ -63,8 +63,8 @@ const Userlist = () => {
     set(push(ref(db, "friendrequestList/")), {
       sendername: auth.currentUser.displayName,
       senderid: auth.currentUser.uid,
-      recivername: item.name,
-      reciverid: item.id,
+      receivername: item.name,
+      receiverid: item.id,
     }).then(() => {
       console.log("friendrequest");
     });

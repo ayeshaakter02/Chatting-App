@@ -21,7 +21,7 @@ const FriendList = () => {
       snapshot.forEach((item) => {
         if (
           auth.currentUser.uid == item.val().senderid ||
-          auth.currentUser.uid == item.val().reciverid
+          auth.currentUser.uid == item.val().receiverid
         ) {
           array.push({ ...item.val(), id: item.key });
         }
@@ -32,20 +32,20 @@ const FriendList = () => {
 
   const handleBlock = (item) => {
     if (auth.currentUser.uid == item.senderid) {
-      console.log("reciver", item);
+      console.log("receiver", item);
       set(push(ref(db, "blockList/")), {
         blockbyuser: item.senderid,
         blockbyusername: item.sendername,
-        blockuser: item.reciverid,
-        blockusername: item.recivername,
+        blockuser: item.receiverid,
+        blockusername: item.receivername,
       }).then(() => {
         remove(ref(db, "friendList/" + item.id));
       });
     } else {
       console.log("sender", item);  
       set(push(ref(db, "blockList/")), {
-        blockbyuser: item.reciverid,
-        blockbyusername: item.recivername,
+        blockbyuser: item.receiverid,
+        blockbyusername: item.receivername,
         blockuser: item.senderid,
         blockusername: item.sendername,
       }).then(() => {
@@ -89,7 +89,7 @@ const FriendList = () => {
                     <div className="min-w-0 flex-1">
                       {auth.currentUser.uid == item.senderid ? (
                         <p className="truncate text-sm font-medium text-white dark:text-white">
-                          {item.recivername}
+                          {item.receivername}
                         </p>
                       ) : (
                         <p className="truncate text-sm font-medium text-white dark:text-white">

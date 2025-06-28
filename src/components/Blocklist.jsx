@@ -35,8 +35,8 @@ const BlockList = () => {
       set(push(ref(db, "friendList/")), {
               senderid: item.blockbyuser,
               sendername: item.blockbyusername,
-              reciverid: item.blockuser,
-              recivername: item.blockusername,
+              receiverid: item.blockuser,
+              receivername: item.blockusername,
             }).then(() => {
               remove(ref(db, "blockList/" + item.id));
             });
@@ -44,8 +44,8 @@ const BlockList = () => {
       set(push(ref(db, "friendList/")), {
               senderid: item.blockuser,
               sendername: item.blockusername,
-              reciverid: item.blockbyuser,
-              recivername: item.blockbyusername,
+              receiverid: item.blockbyuser,
+              receivername: item.blockbyusername,
             }).then(() => {
               remove(ref(db, "blockList/" + item.id));
             });

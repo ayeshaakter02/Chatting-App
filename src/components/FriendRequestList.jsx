@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { GoPlus } from "react-icons/go";
 import { getDatabase, ref, onValue, set, push, remove } from "firebase/database";
 import { auth } from "../firebase.config";
 
@@ -12,7 +11,7 @@ const FriendRequestList = () => {
     onValue(requestRef, (snapshot) => {
       const array = [];
       snapshot.forEach((item) => {
-        if (auth.currentUser.uid == item.val().reciverid) {
+        if (auth.currentUser.uid == item.val().receiverid) {
           array.push({...item.val(), id: item.key});
         }
       });
