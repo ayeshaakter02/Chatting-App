@@ -97,7 +97,7 @@ const Userlist = () => {
                         <div className="flex-shrink-0">
                           <img
                             className="h-8 w-8 rounded-full"
-                            src="images/user.jpg"
+                        src="images/user.jpg"
                             alt="Neil image"
                           />
                         </div>
@@ -121,7 +121,7 @@ const Userlist = () => {
                         <div className="flex-shrink-0">
                           <img
                             className="h-8 w-8 rounded-full"
-                            src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
+                        src="images/user.jpg"
                             alt="Neil image"
                           />
                         </div>
@@ -145,7 +145,7 @@ const Userlist = () => {
                         <div className="flex-shrink-0">
                           <img
                             className="h-8 w-8 rounded-full"
-                            src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
+                        src="images/user.jpg"
                             alt="Neil image"
                           />
                         </div>
@@ -168,7 +168,7 @@ const Userlist = () => {
                         <div className="flex-shrink-0">
                           <img
                             className="h-8 w-8 rounded-full"
-                            src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
+                        src="images/user.jpg"
                             alt="Neil image"
                           />
                         </div>
@@ -180,7 +180,7 @@ const Userlist = () => {
                             {item.email}
                           </p>
                         </div>
-                        <button className="bg-blue-500 p-1 text-lg text-white rounded-sm mr-2">
+                        <button onClick={()=>handleFriendrequest(item)} className="bg-blue-500 p-1 text-lg text-white rounded-sm mr-2">
                           Add Friend
                         </button>
                       </div>
