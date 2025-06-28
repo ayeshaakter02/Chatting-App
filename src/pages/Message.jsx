@@ -1,9 +1,18 @@
-import React from "react";
-import FriendMessageList from "../components/FriendListmsg";
+import React, { useState } from "react";
+import { RiSendPlaneFill } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import FriendListmsg from "../components/FriendListmsg";
 const Message = () => {
   const user = useSelector((state) => state.chatInfo.value);
+  let [msg, setMsg] = useState(null)
+
+  let handleMsg = (e)=> {
+    setMsg(e.target.value)
+  }
+
+  let handleSendmsg=()=>{
+
+  }
   console.log(user);
   return (
     <>
@@ -18,7 +27,7 @@ const Message = () => {
               type="text"
               name=""
               id=""
-              placeholder="search IRL"
+              placeholder="Search IRL"
               className="w-full rounded-2xl bg-indigo-200 px-5 py-3"
             />
           </div>
@@ -84,13 +93,19 @@ const Message = () => {
                 </div>
               </div>
             </div>
-            <div className="py-5">
-              <input
-                className="w-full rounded-xl bg-gray-300 px-3 py-5"
+            <div>
+              {user &&
+              <div className="py-5 flex"> 
+              <input onChange={handleMsg}
+                className="w-full rounded-xl bg-indigo-200 px-3 py-5"
                 type="text"
-                placeholder="type your message here..."
+                placeholder="Type your message here..."
               />
+              <button onClick={handleSendmsg} className="-ml-10 text-2xl text-indigo-700"><RiSendPlaneFill /></button>
             </div>
+              }
+            </div>
+            
           </div>
           {/* end message */}
           <div className="w-2/5 border-l-2 border-indigo-400 px-5">

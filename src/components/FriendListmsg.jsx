@@ -43,7 +43,7 @@ const FriendListmsg = () => {
         <div className="border-b-2 border-indigo-400 px-2 py-4">
           <input
             type="text"
-            placeholder="search chatting"
+            placeholder="Search chatting"
             className="w-full rounded-2xl bg-indigo-200 px-2 py-2"
           />
         </div>
