@@ -48,11 +48,11 @@ const FriendListmsg = () => {
         {/* end search compt */}
         {/* user list */}
         {friendlist.map((item) => (
-          <div onClick={()=>handleSelectuser(item)} className="flex flex-row items-center justify-center border-b-2 border-indigo-400 px-2 py-4">
+          <div onClick={()=>handleSelectuser(item)} className="flex flex-row items-center justify-center border-b-2 border-indigo-400 px-2 py-4 gap-2">
             <div>
-              <img src="" alt="" />
+              <img className="h-8 w-8 rounded-full" src="images/user.jpg" alt="user" />
             </div>
-            <div className="w-full">
+            <div className="ml-2">
               {auth.currentUser.uid == item.senderid ? (
                 <div className="text-lg font-semibold text-white">{item.recivername}</div>
               ) : (

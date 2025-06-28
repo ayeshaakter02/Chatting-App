@@ -81,7 +81,7 @@ const Userlist = () => {
             </h3>
             <a
               href="#"
-              className="text-sm font-medium text-indigo-700 hover:underline dark:text-blue-500"
+              className="text-md font-medium text-indigo-600 hover:underline dark:text-blue-500"
             >
               View all
             </a>
@@ -97,7 +97,7 @@ const Userlist = () => {
                         <div className="flex-shrink-0">
                           <img
                             className="h-8 w-8 rounded-full"
-                            src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
+                            src="images/user.jpg"
                             alt="Neil image"
                           />
                         </div>

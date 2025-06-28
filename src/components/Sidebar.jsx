@@ -99,7 +99,7 @@ const Sidebar = () => {
               <ul className="space-y-1">
                 <li>
                   <Link to="/"
-                    className={`flex items-center gap-x-3 px-2.5 py-2 ${pathname == "/" && "bg-pink-600 text-white"} rounded-lg text-md   focus:outline-hidden hover:bg-pink-600 text-white`}
+                    className={`flex items-center gap-x-3 px-2.5 py-2 ${pathname == "/" && "bg-indigo-600 text-white"} rounded-lg text-md   focus:outline-hidden hover:bg-indigo-600 text-white`}
                   >
                     <svg
                       className="size-4"
@@ -122,7 +122,7 @@ const Sidebar = () => {
                 <li className="hs-accordion" id="users-accordion">
                   <Link to="/message"
                     type="button"
-                    className={`flex items-center gap-x-3 px-2.5 py-2 ${pathname == "/message" && "bg-pink-600 text-white"} rounded-lg text-md focus:outline-hidden hover:bg-pink-600 text-white`}
+                    className={`flex items-center gap-x-3 px-2.5 py-2 ${pathname == "/message" && "bg-indigo-600 text-white"} rounded-lg text-md focus:outline-hidden hover:bg-indigo-600 text-white`}
                     aria-expanded="true"
                     aria-controls="users-accordion-collapse-1"
                   >
@@ -317,7 +317,7 @@ const Sidebar = () => {
                 <li>
                   <button
                     onClick={handleLogout}
-                    className="flex w-full cursor-pointer items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-md focus:outline-hidden  hover:bg-pink-600 text-white focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                    className="flex w-full cursor-pointer items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-md focus:outline-hidden  hover:bg-indigo-600 text-white focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
                   >
                     <svg
                       className="size-4"

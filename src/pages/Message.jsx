@@ -12,17 +12,17 @@ const Message = () => {
       <div className="w-full mx-auto rounded-lg shadow-lg ">
         {/* headaer */}
         <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5 backdrop-blur-xl">
-          <div className="text-pink-600 text-2xl font-semibold">GoingChat</div>
+          <div className="text-indigo-500 text-3xl font-bold">GoingChat</div>
           <div className="w-1/2 ">
             <input
               type="text"
               name=""
               id=""
               placeholder="search IRL"
-              className="w-full rounded-2xl bg-pink-200 px-5 py-3"
+              className="w-full rounded-2xl bg-indigo-200 px-5 py-3"
             />
           </div>
-          <h1 className="text-pink-600 text-2xl font-medium">{user?.name}</h1>
+          <h1 className="text-indigo-500 text-2xl font-semibold">{user?.name}</h1>
         </div>
         {/* end header */}
         {/* Chatting */}
