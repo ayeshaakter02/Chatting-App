@@ -51,7 +51,7 @@ const Message = () => {
       <Toaster />
       {/* component */}
       {/* This is an example component */}
-      <div className="mx-auto w-full rounded-lg shadow-lg mt-3">
+      <div className="mx-auto mt-3 w-full rounded-lg shadow-lg">
         {/* headaer */}
         <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5 backdrop-blur-xl">
           <div className="text-3xl font-bold text-indigo-500">GoingChat</div>
@@ -77,10 +77,8 @@ const Message = () => {
           {/* message */}
           <div className="flex w-full flex-col justify-between px-5">
             {user && (
-
               <div>
-                <div className="mt-5 flex flex-col overflow-y-scroll h-180">
-
+                <div className="mt-5 flex h-180 flex-col overflow-y-scroll">
                   {msglist.map((msgitem) =>
                     msgitem.senderid == auth.currentUser.uid ? (
                       <div className="mb-4">
