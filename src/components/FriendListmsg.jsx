@@ -38,7 +38,7 @@ const FriendListmsg = () => {
 
   return (
     <div>
-      <div className="flex w-60 flex-col overflow-y-auto border-r-2 border-indigo-400">
+      <div className="flex w-60 flex-col border-r-2 border-indigo-400 overflow-y-scroll h-210">
         {/* search compt */}
         <div className="border-b-2 border-indigo-400 px-2 py-4">
           <input
