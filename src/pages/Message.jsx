@@ -36,22 +36,22 @@ const Message = () => {
       const array = [];
       snapshot.forEach((item) => {
         if (
-          auth.currentUser.uid == item.val().senderid ||
-          auth.currentUser.uid == item.val().receiverid
+          (auth.currentUser.uid == item.val().senderid && user?.id == item.val().receiverid)||
+          (auth.currentUser.uid == item.val().receiverid && user?.id == item.val().senderid)
         ) {
           array.push({ ...item.val(), id: item.key });
         }
       });
       setMsglist(array);
     });
-  }, []);
+  }, [user?.id]);
 
   return (
     <>
       <Toaster />
       {/* component */}
       {/* This is an example component */}
-      <div className="mx-auto mt-3 w-full rounded-lg shadow-lg">
+      <div className="mx-auto m-3 w-full rounded-lg shadow-lg">
         {/* headaer */}
         <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5 backdrop-blur-xl">
           <div className="text-3xl font-bold text-indigo-500">GoingChat</div>
@@ -76,8 +76,7 @@ const Message = () => {
           {/* end chat list */}
           {/* message */}
           <div className="flex w-full flex-col justify-between px-5">
-            {user && (
-              <div>
+
                 <div className="mt-5 flex h-180 flex-col overflow-y-scroll">
                   {msglist.map((msgitem) =>
                     msgitem.senderid == auth.currentUser.uid ? (
@@ -116,6 +115,7 @@ const Message = () => {
                   )}
                 </div>
 
+                {user && (
                 <div>
                   <div className="flex py-5">
                     <input
@@ -133,11 +133,10 @@ const Message = () => {
                     </button>
                   </div>
                 </div>
-              </div>
             )}
           </div>
           {/* end message */}
-          <div className="w-2/5 border-l-2 border-indigo-400 px-5">
+          {/* <div className="w-2/5 border-l-2 border-indigo-400 px-5">
             <div className="flex flex-col">
               <div className="py-4 text-xl font-semibold">Mern Stack Group</div>
               <img
@@ -151,7 +150,7 @@ const Message = () => {
                 Deserunt, perspiciatis!
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
