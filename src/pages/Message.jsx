@@ -51,9 +51,9 @@ const Message = () => {
       <Toaster />
       {/* component */}
       {/* This is an example component */}
-      <div className="mx-auto m-3 w-full rounded-lg shadow-lg">
+      <div className="mx-auto m-3 w-full rounded-lg shadow-lg backdrop-blur-xl">
         {/* headaer */}
-        <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5 backdrop-blur-xl">
+        <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5 ">
           <div className="text-3xl font-bold text-indigo-500">GoingChat</div>
           <div className="w-1/2">
             <input
@@ -70,19 +70,19 @@ const Message = () => {
         </div>
         {/* end header */}
         {/* Chatting */}
-        <div className="flex flex-row justify-between backdrop-blur-xl">
+        <div className="flex flex-row justify-between ">
           {/* chat list */}
           <FriendListmsg />
           {/* end chat list */}
           {/* message */}
           <div className="flex w-full flex-col justify-between px-5">
 
-                <div className="mt-5 flex h-180 flex-col overflow-y-scroll">
+                <div className="mt-5 flex h-180 flex-col overflow-y-scroll mr-0">
                   {msglist.map((msgitem) =>
                     msgitem.senderid == auth.currentUser.uid ? (
                       <div className="mb-4">
                         <div className="flex justify-end">
-                          <div className="mr-2 rounded-tl-3xl rounded-tr-xl rounded-bl-3xl bg-blue-400 px-4 py-3 text-white">
+                          <div className="mr-2 rounded-tl-3xl rounded-tr-xl rounded-bl-3xl bg-blue-500 px-4 py-3 text-white">
                             {msgitem.msg}
                           </div>
                           <img
