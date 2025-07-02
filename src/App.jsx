@@ -9,6 +9,7 @@ import Signin from './pages/Signin';
 import Rootlayout from './components/Rootlayout';
 import Message from './pages/Message';
 import Signup from './pages/Signup';
+import { Emoji } from 'emoji-picker-react';
 
 
 
@@ -24,6 +25,10 @@ const router =createBrowserRouter([
   {
     path: "/signin",
     Component: Signin,
+  },
+  {
+    path: "/emoji",
+    Component: Emoji,
   },
   {
     path: "/signup",
@@ -55,5 +60,4 @@ const App = () => {
   <RouterProvider router={router} />
   )
 }
-
 export default App

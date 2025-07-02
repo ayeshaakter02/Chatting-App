@@ -6,11 +6,15 @@ import { getDatabase, onValue, push, ref, set } from "firebase/database";
 import toast, { Toaster } from "react-hot-toast";
 import { auth } from "../firebase.config";
 import moment from "moment";
+import { Link } from "react-router";
+import EmojiPicker from "emoji-picker-react";
+import { MdEmojiEmotions } from "react-icons/md";
 const Message = () => {
   const db = getDatabase();
   const user = useSelector((state) => state.chatInfo.value);
   let [msg, setMsg] = useState(null);
   const [msglist, setMsglist] = useState([]);
+  const [emoji, setEmoji] = useState(false);
 
   let handleMsg = (e) => {
     setMsg(e.target.value);
@@ -36,8 +40,10 @@ const Message = () => {
       const array = [];
       snapshot.forEach((item) => {
         if (
-          (auth.currentUser.uid == item.val().senderid && user?.id == item.val().receiverid)||
-          (auth.currentUser.uid == item.val().receiverid && user?.id == item.val().senderid)
+          (auth.currentUser.uid == item.val().senderid &&
+            user?.id == item.val().receiverid) ||
+          (auth.currentUser.uid == item.val().receiverid &&
+            user?.id == item.val().senderid)
         ) {
           array.push({ ...item.val(), id: item.key });
         }
@@ -46,14 +52,18 @@ const Message = () => {
     });
   }, [user?.id]);
 
+  const handleEmoji = () => {
+    setEmoji(!emoji);
+  };
+
   return (
     <>
       <Toaster />
       {/* component */}
       {/* This is an example component */}
-      <div className="mx-auto m-3 w-full rounded-lg shadow-lg backdrop-blur-xl">
+      <div className="m-3 mx-auto w-full rounded-lg shadow-lg backdrop-blur-xl">
         {/* headaer */}
-        <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5 ">
+        <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5">
           <div className="text-3xl font-bold text-indigo-500">GoingChat</div>
           <div className="w-1/2">
             <input
@@ -70,69 +80,76 @@ const Message = () => {
         </div>
         {/* end header */}
         {/* Chatting */}
-        <div className="flex flex-row justify-between ">
+        <div className="flex flex-row justify-between">
           {/* chat list */}
           <FriendListmsg />
           {/* end chat list */}
           {/* message */}
           <div className="flex w-full flex-col justify-between px-5">
-
-                <div className="mt-5 flex h-180 flex-col overflow-y-scroll mr-0">
-                  {msglist.map((msgitem) =>
-                    msgitem.senderid == auth.currentUser.uid ? (
-                      <div className="mb-4">
-                        <div className="flex justify-end">
-                          <div className="mr-2 rounded-tl-3xl rounded-tr-xl rounded-bl-3xl bg-blue-500 px-4 py-3 text-white">
-                            {msgitem.msg}
-                          </div>
-                          <img
-                            src="images/user.jpg"
-                            className="h-8 w-8 rounded-full object-cover"
-                            alt=""
-                          />
-                        </div>
-                        <p className="mr-2 flex justify-end px-4 text-white">
-                          {moment(msgitem.date, "YYYYMMDD,h:mm").fromNow()}
-                        </p>
+            <div className="mt-5 mr-0 flex h-180 flex-col overflow-y-scroll">
+              {msglist.map((msgitem) =>
+                msgitem.senderid == auth.currentUser.uid ? (
+                  <div className="mb-4">
+                    <div className="flex justify-end">
+                      <div className="mr-2 rounded-tl-3xl rounded-tr-xl rounded-bl-3xl bg-blue-500 px-4 py-3 text-white">
+                        {msgitem.msg}
                       </div>
-                    ) : (
-                      <div className="mb-4">
-                        <div className="flex justify-start">
-                          <img
-                            src="images/user.jpg"
-                            className="h-8 w-8 rounded-full object-cover"
-                            alt=""
-                          />
-                          <div className="ml-2 rounded-tl-xl rounded-tr-3xl rounded-br-3xl bg-gray-400 px-4 py-3 text-white">
-                            {msgitem.msg}
-                          </div>
-                        </div>
-                        <p className="mr-2 px-4 text-white">
-                          {moment(msgitem.date, "YYYYMMDD,h:mm").fromNow()}
-                        </p>
-                      </div>
-                    ),
-                  )}
-                </div>
-
-                {user && (
-                <div>
-                  <div className="flex py-5">
-                    <input
-                      onChange={handleMsg}
-                      className="w-full rounded-xl bg-indigo-200 px-3 py-5"
-                      type="text"
-                      value={msg}
-                      placeholder="Type your message here..."
-                    />
-                    <button
-                      onClick={handleSendmsg}
-                      className="-ml-10 text-2xl text-indigo-700"
-                    >
-                      <RiSendPlaneFill />
-                    </button>
+                      <img
+                        src="images/user.jpg"
+                        className="h-8 w-8 rounded-full object-cover"
+                        alt=""
+                      />
+                    </div>
+                    <p className="mr-2 flex justify-end px-4 text-white">
+                      {moment(msgitem.date, "YYYYMMDD,h:mm").fromNow()}
+                    </p>
                   </div>
+                ) : (
+                  <div className="mb-4">
+                    <div className="flex justify-start">
+                      <img
+                        src="images/user.jpg"
+                        className="h-8 w-8 rounded-full object-cover"
+                        alt=""
+                      />
+                      <div className="ml-2 rounded-tl-xl rounded-tr-3xl rounded-br-3xl bg-gray-400 px-4 py-3 text-white">
+                        {msgitem.msg}
+                      </div>
+                    </div>
+                    <p className="mr-2 px-4 text-white">
+                      {moment(msgitem.date, "YYYYMMDD,h:mm").fromNow()}
+                    </p>
+                  </div>
+                ),
+              )}
+            </div>
+
+            {user && (
+              <div>
+                <div className="flex py-5">
+                  <MdEmojiEmotions
+                    onClick={handleEmoji}
+                    className="absolute mt-5 ml-2 text-2xl text-indigo-700"
+                  />
+                  {emoji && (
+                    <EmojiPicker className="-mt-120 absolute"/>
+                  )}
+                  
+                  <input
+                    onChange={handleMsg}
+                    className="w-full rounded-xl bg-indigo-200 px-10 py-5"
+                    type="text"
+                    value={msg}
+                    placeholder="Type your message here..."
+                  />
+                  <button
+                    onClick={handleSendmsg}
+                    className="-ml-10 text-2xl text-indigo-700"
+                  >
+                    <RiSendPlaneFill />
+                  </button>
                 </div>
+              </div>
             )}
           </div>
           {/* end message */}
