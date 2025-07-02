@@ -37,20 +37,20 @@ const FriendListmsg = () => {
     }
   };
 
-  // let handleSearch = (e) => {
-  //   let filterresult = friendlist.filter(
-  //     (item) =>
-  //       item.sendername
-  //         .toUpperCase()
-  //         .replaceAll(" ", "")
-  //         .includes(e.target.value.toUpperCase()) ||
-  //       item.receivername
-  //         .toUpperCase()
-  //         .replaceAll(" ", "")
-  //         .includes(e.target.value.toUpperCase()),
-  //   );
-  //   setfilterResult(filterresult);
-  // };
+  let handleSearch = (e) => {
+    let filterresult = friendlist.filter(
+      (item) =>
+        item.sendername
+          .toUpperCase()
+          .replaceAll(" ", "")
+          .includes(e.target.value.toUpperCase()) ||
+        item.receivername
+          .toUpperCase()
+          .replaceAll(" ", "")
+          .includes(e.target.value.toUpperCase()),
+    );
+    setfilterResult(filterresult);
+  };
 
   return (
     <div>
