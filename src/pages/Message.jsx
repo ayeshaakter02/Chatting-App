@@ -14,6 +14,7 @@ const Message = () => {
   const user = useSelector((state) => state.chatInfo.value);
   let [msg, setMsg] = useState(null);
   const [msglist, setMsglist] = useState([]);
+  const [selectEmoji, setSelectEmoji] = useState([]);
   const [emoji, setEmoji] = useState(false);
 
   let handleMsg = (e) => {
@@ -54,6 +55,10 @@ const Message = () => {
 
   const handleEmoji = () => {
     setEmoji(!emoji);
+  };
+
+  const handleEmojiData = (item) => {
+    setSelectEmoji((prev) => [...prev, item.emoji]);
   };
 
   return (
@@ -132,9 +137,20 @@ const Message = () => {
                     className="absolute mt-5 ml-2 text-2xl text-indigo-700"
                   />
                   {emoji && (
-                    <EmojiPicker className="-mt-120 absolute"/>
+                    <EmojiPicker
+                      onEmojiClick={handleEmojiData}
+                      searchDisabled={true}
+                      theme="dark"
+                      skinTonesDisabled={true}
+                      className="absolute -mt-120"
+                    />
                   )}
-                  
+
+                  {selectEmoji.length > 0 && (
+                    <div>
+                      <strong> </strong> {selectEmoji.join("")}
+                    </div>
+                  )}
                   <input
                     onChange={handleMsg}
                     className="w-full rounded-xl bg-indigo-200 px-10 py-5"
