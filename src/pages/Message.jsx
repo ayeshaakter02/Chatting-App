@@ -152,16 +152,16 @@ const Message = () => {
                       <strong> </strong> {selectEmoji.join("")}
                     </div>
                   )}
-                  {/* <input
+                  <input
                     onChange={handleMsg}
-                    className="w-340 rounded-xl bg-indigo-200 px-10 py-5 fixed -mt-12"
+                    className="w-120 lg-w-340 rounded-xl bg-indigo-200 px-10 py-5 fixed -mt-12"
                     type="text"
                     value={msg}
                     placeholder="Type your message here..."
-                  /> */}
+                  />
                   <button
                     onClick={handleSendmsg}
-                    className="-mt-6 ml-320 absolute text-2xl text-indigo-700 z-1"
+                    className="-mt-6 ml-100 lg-ml-320 absolute text-2xl text-indigo-700 z-1"
                   >
                     <RiSendPlaneFill />
                   </button>
