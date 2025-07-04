@@ -137,7 +137,7 @@ const Message = () => {
                     onClick={handleEmoji}
                     className="absolute -mt-6 ml-3 text-2xl text-indigo-700 z-1"
                   />
-                  {/* {emoji && (
+                  {emoji && (
                     <EmojiPicker
                       onEmojiClick={handleEmojiData}
                       searchDisabled={true}
@@ -145,7 +145,7 @@ const Message = () => {
                       skinTonesDisabled={true}
                       className="absolute -mt-120"
                     />
-                  )} */}
+                  )}
 
                   {selectEmoji.length > 0 && (
                     <div>
