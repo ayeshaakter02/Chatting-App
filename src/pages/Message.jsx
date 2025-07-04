@@ -59,6 +59,7 @@ const Message = () => {
 
   const handleEmojiData = (item) => {
     setSelectEmoji((prev) => [...prev, item.emoji]);
+    selectEmoji.join("");
   };
 
   return (
@@ -131,12 +132,12 @@ const Message = () => {
 
             {user && (
               <div>
-                <div className="flex py-5">
+                <div className="flex py-5 relative">
                   <MdEmojiEmotions
                     onClick={handleEmoji}
-                    className="absolute mt-5 ml-2 text-2xl text-indigo-700"
+                    className="absolute -mt-6 ml-3 text-2xl text-indigo-700 z-1"
                   />
-                  {emoji && (
+                  {/* {emoji && (
                     <EmojiPicker
                       onEmojiClick={handleEmojiData}
                       searchDisabled={true}
@@ -144,23 +145,23 @@ const Message = () => {
                       skinTonesDisabled={true}
                       className="absolute -mt-120"
                     />
-                  )}
+                  )} */}
 
                   {selectEmoji.length > 0 && (
                     <div>
                       <strong> </strong> {selectEmoji.join("")}
                     </div>
                   )}
-                  <input
+                  {/* <input
                     onChange={handleMsg}
-                    className="w-full rounded-xl bg-indigo-200 px-10 py-5"
+                    className="w-340 rounded-xl bg-indigo-200 px-10 py-5 fixed -mt-12"
                     type="text"
                     value={msg}
                     placeholder="Type your message here..."
-                  />
+                  /> */}
                   <button
                     onClick={handleSendmsg}
-                    className="-ml-10 text-2xl text-indigo-700"
+                    className="-mt-6 ml-320 absolute text-2xl text-indigo-700 z-1"
                   >
                     <RiSendPlaneFill />
                   </button>
