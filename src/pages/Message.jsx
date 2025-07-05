@@ -12,10 +12,9 @@ import { MdEmojiEmotions } from "react-icons/md";
 const Message = () => {
   const db = getDatabase();
   const user = useSelector((state) => state.chatInfo.value);
-  let [msg, setMsg] = useState(null);
+  let [msg, setMsg] = useState("");
   const [msglist, setMsglist] = useState([]);
-  const [selectEmoji, setSelectEmoji] = useState([]);
-  const [emoji, setEmoji] = useState(false);
+  const [showPicker, setShowPicker] = useState(false);
 
   let handleMsg = (e) => {
     setMsg(e.target.value);
@@ -54,12 +53,11 @@ const Message = () => {
   }, [user?.id]);
 
   const handleEmoji = () => {
-    setEmoji(!emoji);
+    setShowPicker(!showPicker);
   };
 
-  const handleEmojiData = (item) => {
-    setSelectEmoji((prev) => [...prev, item.emoji]);
-    selectEmoji.join("");
+  const handleEmojiClick = (emojiData) => {
+    setMsg((prev) => prev + emojiData.emoji);
   };
 
   return (
@@ -132,36 +130,31 @@ const Message = () => {
 
             {user && (
               <div>
-                <div className="flex py-5 relative">
+                <div className="relative inline-block py-5">
                   <MdEmojiEmotions
                     onClick={handleEmoji}
-                    className="absolute -mt-6 ml-3 text-2xl text-indigo-700 z-1"
+                    className="absolute z-1 -mt-6 ml-3 text-2xl text-indigo-700"
                   />
-                  {emoji && (
-                    <EmojiPicker
-                      onEmojiClick={handleEmojiData}
-                      searchDisabled={true}
-                      theme="dark"
-                      skinTonesDisabled={true}
-                      className="absolute -mt-120"
-                    />
-                  )}
-
-                  {selectEmoji.length > 0 && (
-                    <div>
-                      <strong> </strong> {selectEmoji.join("")}
+                  {showPicker && (
+                    <div className="absolute -mt-125">
+                      <EmojiPicker
+                        onEmojiClick={handleEmojiClick}
+                        searchDisabled={true}
+                        theme="dark"
+                        skinTonesDisabled={true}
+                      />
                     </div>
                   )}
                   <input
                     onChange={handleMsg}
-                    className="w-120 lg-w-340 rounded-xl bg-indigo-200 px-10 py-5 fixed -mt-12"
+                    className="fixed -mt-12 w-340 rounded-xl bg-indigo-200 px-10 py-5"
                     type="text"
                     value={msg}
                     placeholder="Type your message here..."
                   />
                   <button
                     onClick={handleSendmsg}
-                    className="-mt-6 ml-100 lg-ml-320 absolute text-2xl text-indigo-700 z-1"
+                    className="absolute z-1 -mt-6 ml-320 text-2xl text-indigo-700"
                   >
                     <RiSendPlaneFill />
                   </button>
