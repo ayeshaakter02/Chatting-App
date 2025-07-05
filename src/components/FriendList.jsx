@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { GoPlus } from "react-icons/go";
 import {
   getDatabase,
   ref,
@@ -42,7 +41,7 @@ const FriendList = () => {
         remove(ref(db, "friendList/" + item.id));
       });
     } else {
-      console.log("sender", item);  
+      console.log("sender", item);
       set(push(ref(db, "blockList/")), {
         blockbyuser: item.receiverid,
         blockbyusername: item.receivername,
@@ -59,7 +58,7 @@ const FriendList = () => {
       {/* component */}
       {/* This is an example component */}
       <div>
-        <div className="max-w-md rounded-lg border p-4 shadow-md sm:p-8 backdrop-blur-xl">
+        <div className="max-w-md rounded-lg border p-4 shadow-md backdrop-blur-xl sm:p-8">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-xl leading-none font-bold text-white">
               Friend List
@@ -97,14 +96,12 @@ const FriendList = () => {
                         </p>
                       )}
 
-                      <p className="truncate text-sm text-white">
-                        njmvbjhhkj
-                      </p>
+                      <p className="truncate text-sm text-white">njmvbjhhkj</p>
                     </div>
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleBlock(item)}
-                        className="bg-blue-500 p-1 text-lg text-white rounded-sm mr-2"
+                        className="mr-2 rounded-sm bg-blue-500 p-1 text-lg text-white"
                       >
                         Block
                       </button>
