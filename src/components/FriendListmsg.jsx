@@ -6,18 +6,12 @@ import { useDispatch } from "react-redux";
 import { chattinguser } from "../slices/chatSlice";
 import { useSelector } from "react-redux";
 
-import useOnlineStatus from "./useOnlineStatus";
-import UserStatus from "./UserStatus";
-
 const FriendListmsg = () => {
   const db = getDatabase();
   const [friendlist, setFriendlist] = useState([]);
   const [filterResult, setfilterResult] = useState();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.chatInfo.value);
-
-  const currentUserId = "user"; // Replace with real user ID
-    useOnlineStatus(currentUserId);
 
   useEffect(() => {
     const requestRef = ref(db, "friendList/");
@@ -100,8 +94,7 @@ const FriendListmsg = () => {
                 </div>
               </div>
             ))
-          : 
-          friendlist.map((item) => (
+          : friendlist.map((item) => (
               <div
                 onClick={() => handleSelectuser(item)}
                 className={`flex flex-row items-center justify-center gap-2 border-b-2 border-indigo-400 px-2 py-4 ${user?.id == item.senderid || user?.id == item.receiverid ? "bg-indigo-700" : "bg-transparent"}`}
@@ -124,7 +117,7 @@ const FriendListmsg = () => {
                     </div>
                   )}
 
-                  <UserStatus userId = "user"/>
+                  {/* <UserStatus userId = "user"/> */}
 
                   <span className="text-gray-400">Pick me at 9:00 Am</span>
                 </div>

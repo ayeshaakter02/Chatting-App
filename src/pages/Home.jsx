@@ -14,8 +14,9 @@ const Home = () => {
   //     navigate("/signin",)
   //   }
   // } ,[]);
+
   return (
-    <div className="grid w-full grid-cols-3 mt-5 gap-2">
+    <div className="mt-5 grid w-full grid-cols-3 gap-2">
       <FriendList />
       <FriendRequestList />
       <Userlist />

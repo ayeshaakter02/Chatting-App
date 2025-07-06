@@ -11,8 +11,6 @@ import Message from './pages/Message';
 import Signup from './pages/Signup';
 import { Emoji } from 'emoji-picker-react';
 
-
-
 const router =createBrowserRouter([
   {
     path: "/",
@@ -39,25 +37,14 @@ const router =createBrowserRouter([
     Component: Not_found,
   }
 ]);
-  // {
-  //   path: "/",
-  //   element:<Signin/>
-  // },{
-  //   path: "*",
-  //   element:<Not_found/>
-  // },
-  // {
-  //   path: "/home",
-  //   element:<Home/>
-  // }
-  // ,{
-  //   path: "/signup",
-  //   element:<Singup/>
-  // },
 
 const App = () => {
+  
   return (
-  <RouterProvider router={router} />
+    <>
+    <RouterProvider router={router} />
+    </>
+  
   )
 }
 export default App

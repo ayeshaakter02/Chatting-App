@@ -69,15 +69,6 @@ const Message = () => {
         {/* headaer */}
         <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5">
           <div className="text-3xl font-bold text-indigo-500">GoingChat</div>
-          <div className="w-1/2">
-            <input
-              type="text"
-              name=""
-              id=""
-              placeholder="Search IRL"
-              className="w-full rounded-2xl bg-indigo-200 px-5 py-3"
-            />
-          </div>
           <h1 className="text-2xl font-semibold text-indigo-500">
             {user?.name}
           </h1>
@@ -133,7 +124,7 @@ const Message = () => {
                 <div className="relative inline-block py-5">
                   <MdEmojiEmotions
                     onClick={handleEmoji}
-                    className="absolute z-1 -mt-6 ml-3 text-2xl text-indigo-700"
+                    className="absolute z-1 -mt-7 ml-3 text-2xl text-indigo-700"
                   />
                   {showPicker && (
                     <div className="absolute -mt-125">
@@ -145,16 +136,16 @@ const Message = () => {
                       />
                     </div>
                   )}
-                  <input
+                  {/* <textarea
                     onChange={handleMsg}
-                    className="fixed -mt-12 w-340 rounded-xl bg-indigo-200 px-10 py-5"
+                    className="fixed -mt-12 w-5/6 rounded-xl bg-indigo-200 px-10 py-2"
                     type="text"
                     value={msg}
                     placeholder="Type your message here..."
-                  />
+                  /> */}
                   <button
                     onClick={handleSendmsg}
-                    className="absolute z-1 -mt-6 ml-320 text-2xl text-indigo-700"
+                    className="absolute z-1 -mt-6 ml-330 text-2xl text-indigo-700"
                   >
                     <RiSendPlaneFill />
                   </button>
