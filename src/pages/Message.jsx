@@ -136,13 +136,13 @@ const Message = () => {
                       />
                     </div>
                   )}
-                  {/* <textarea
+                  <textarea
                     onChange={handleMsg}
                     className="fixed -mt-12 w-5/6 rounded-xl bg-indigo-200 px-10 py-2"
                     type="text"
                     value={msg}
                     placeholder="Type your message here..."
-                  /> */}
+                  />
                   <button
                     onClick={handleSendmsg}
                     className="absolute z-1 -mt-6 ml-330 text-2xl text-indigo-700"
