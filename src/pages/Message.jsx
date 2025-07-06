@@ -119,7 +119,7 @@ const Message = () => {
               )}
             </div>
 
-            {/* {user && (
+            {user && (
               <div>
                 <div className="relative inline-block py-5">
                   <MdEmojiEmotions
@@ -151,7 +151,7 @@ const Message = () => {
                   </button>
                 </div>
               </div>
-            )} */}
+            )}
           </div>
           {/* end message */}
           {/* <div className="w-2/5 border-l-2 border-indigo-400 px-5">
