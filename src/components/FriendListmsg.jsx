@@ -119,7 +119,6 @@ const FriendListmsg = () => {
 
                   {/* <UserStatus userId = "user"/> */}
 
-                  <span className="text-gray-400">Pick me at 9:00 Am</span>
                 </div>
               </div>
             ))}
