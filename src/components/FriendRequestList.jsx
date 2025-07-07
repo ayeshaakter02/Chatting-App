@@ -71,9 +71,7 @@ const FriendRequestList = () => {
                       <p className="truncate text-xl font-medium text-white dark:text-white">
                         {item.sendername}
                       </p>
-                      <p className="truncate text-sm text-white dark:text-gray-400">
-                        Email
-                      </p>
+
                     </div>
                     <div className="flex gap-2">
                       <button onClick={()=>handleFriendAccept(item)} className="bg-blue-500 p-1 text-lg text-white rounded-sm">

@@ -101,9 +101,7 @@ const FriendList = () => {
                           <p className="truncate text-xl font-medium text-white dark:text-white">
                           {item.sendername}
                         </p>
-                        <p className="text-md truncate text-white">
-                            {item.email}
-                          </p>
+
                         </div>
                         
                       )}

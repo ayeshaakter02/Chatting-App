@@ -95,9 +95,7 @@ const BlockList = () => {
                           {item.blockbyusername}
                         </p>
                       )}
-                      <p className="text-md truncate text-white">
-                            {item.email}
-                          </p>
+                      
                     </div>
                     <div className="flex gap-2">
                       <button onClick={()=>handleUnblock(item)} className="bg-blue-500 p-1 text-lg text-white rounded-sm mr-2">
