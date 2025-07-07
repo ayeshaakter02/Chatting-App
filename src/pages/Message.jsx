@@ -154,21 +154,6 @@ const Message = () => {
             )}
           </div>
           {/* end message */}
-          {/* <div className="w-2/5 border-l-2 border-indigo-400 px-5">
-            <div className="flex flex-col">
-              <div className="py-4 text-xl font-semibold">Mern Stack Group</div>
-              <img
-                src="https://source.unsplash.com/L2cxSuKWbpo/600x600"
-                className="h-64 rounded-xl object-cover"
-                alt=""
-              />
-              <div className="py-4 font-semibold">Created 22 Sep 2021</div>
-              <div className="font-light">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deserunt, perspiciatis!
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </>
