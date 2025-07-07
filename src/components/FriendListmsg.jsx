@@ -117,8 +117,6 @@ const FriendListmsg = () => {
                     </div>
                   )}
 
-                  {/* <UserStatus userId = "user"/> */}
-
                 </div>
               </div>
             ))}
