@@ -40,7 +40,7 @@ const FriendRequestList = () => {
       {/* component */}
       {/* This is an example component */}
       <div>
-        <div className="max-w-md rounded-lg border p-4 shadow-md sm:p-8 dark:border-gray-700 dark:bg-gray-800 backdrop-blur-xl">
+        <div className="max-w-lg rounded-lg border p-4 shadow-md sm:p-8 dark:border-gray-700 dark:bg-gray-800 backdrop-blur-xl">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-xl leading-none font-bold text-white dark:text-white">
               Friend Request List
@@ -68,7 +68,7 @@ const FriendRequestList = () => {
                       />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium text-white dark:text-white">
+                      <p className="truncate text-xl font-medium text-white dark:text-white">
                         {item.sendername}
                       </p>
                       <p className="truncate text-sm text-white dark:text-gray-400">

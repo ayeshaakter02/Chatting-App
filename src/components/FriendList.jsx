@@ -58,7 +58,7 @@ const FriendList = () => {
       {/* component */}
       {/* This is an example component */}
       <div>
-        <div className="max-w-md rounded-lg border p-4 shadow-md backdrop-blur-xl sm:p-8">
+        <div className="max-w-lg rounded-lg border p-4 shadow-md backdrop-blur-xl sm:p-8">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-xl leading-none font-bold text-white">
               Friend List
@@ -87,16 +87,28 @@ const FriendList = () => {
                     </div>
                     <div className="min-w-0 flex-1">
                       {auth.currentUser.uid == item.senderid ? (
-                        <p className="truncate text-sm font-medium text-white dark:text-white">
+                        <div>
+                          <p className="truncate text-xl font-medium text-white dark:text-white">
                           {item.receivername}
                         </p>
+                        <p className="text-md truncate text-white">
+                            {item.email}
+                          </p>
+                        </div>
+                        
                       ) : (
-                        <p className="truncate text-sm font-medium text-white dark:text-white">
+                        <div>
+                          <p className="truncate text-xl font-medium text-white dark:text-white">
                           {item.sendername}
                         </p>
+                        <p className="text-md truncate text-white">
+                            {item.email}
+                          </p>
+                        </div>
+                        
                       )}
 
-                      <p className="truncate text-sm text-white">njmvbjhhkj</p>
+                      
                     </div>
                     <div className="flex gap-2">
                       <button

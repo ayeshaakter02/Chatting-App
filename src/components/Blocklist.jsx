@@ -57,7 +57,7 @@ const BlockList = () => {
       {/* component */}
       {/* This is an example component */}
       <div>
-        <div className="max-w-md rounded-lg border  p-4 shadow-md sm:p-8 dark:border-gray-700 dark:bg-gray-800 backdrop-blur-xl">
+        <div className="max-w-lg rounded-lg border  p-4 shadow-md sm:p-8 dark:border-gray-700 dark:bg-gray-800 backdrop-blur-xl">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-xl leading-none font-bold text-white dark:text-white">
               Block List
@@ -86,18 +86,18 @@ const BlockList = () => {
                     </div>
                     <div className="min-w-0 flex-1">
                       {auth.currentUser.uid == item.blockbyuser ? (
-                        <p className="truncate text-sm font-medium text-white dark:text-white">
+                        <p className="truncate text-xl font-medium text-white dark:text-white">
                           {item.blockusername}
                         </p>
+                        
                       ) : (
-                        <p className="truncate text-sm font-medium text-white dark:text-white">
+                        <p className="truncate text-xl font-medium text-white dark:text-white">
                           {item.blockbyusername}
                         </p>
                       )}
-
-                      <p className="truncate text-sm text-white dark:text-gray-400">
-                        njmvbjhhkj
-                      </p>
+                      <p className="text-md truncate text-white">
+                            {item.email}
+                          </p>
                     </div>
                     <div className="flex gap-2">
                       <button onClick={()=>handleUnblock(item)} className="bg-blue-500 p-1 text-lg text-white rounded-sm mr-2">
