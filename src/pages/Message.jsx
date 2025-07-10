@@ -145,7 +145,7 @@ const Message = () => {
                   />
                   <button
                     onClick={handleSendmsg}
-                    className="absolute z-1 -mt-6 ml-330 text-2xl text-indigo-700"
+                    className="absolute z-1 -mt-6 text-2xl text-indigo-700 lg:ml-330"
                   >
                     <RiSendPlaneFill />
                   </button>

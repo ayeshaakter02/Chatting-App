@@ -1,11 +1,5 @@
 @import "tailwindcss";
 
-@theme{
+@theme {
   --font-Roboto: "Roboto", sans-serif;
-}
-@layer {
-  .container {
-    width: 1300px;
-    margin: 0 auto;
-  }
 }

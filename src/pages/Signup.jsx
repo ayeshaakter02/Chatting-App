@@ -90,15 +90,15 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex min-h-full w-full flex-col justify-center bg-[url('../images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat h-screen">
+    <div className="font-[--font-Roboto] flex min-h-full w-screen sm:w-full flex-col justify-center bg-[url('../images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat h-screen">
       <Toaster />
-      <div className="container">
-        <div className="w-130 py-20 pl-8 backdrop-blur-xl">
-          <h2 className="mt-10 ml-10 text-2xl/9 font-bold tracking-tight text-white">
+      <div className="xl:w-[1300px] mx-auto">
+        <div className="w-80 sm:w-130 py-1 lg:py-20 pl-8 backdrop-blur-xl">
+          <h2 className="mt-2 lg:mt-10 ml-10 text-xl lg:text-2xl/9 font-bold tracking-tight text-white">
             Sign up
           </h2>
-          <div className="mt-10 sm:ml-10 sm:w-full sm:max-w-sm">
-            <form onSubmit={handleSignup} className="space-y-6" method="POST">
+          <div className="mt-2.5 lg:mt-10 sm:ml-10 sm:w-full sm:max-w-sm">
+            <form onSubmit={handleSignup} className="space-y-1 md:space-y-6" method="POST">
               <div>
                 <label
                   htmlFor="text"
@@ -106,7 +106,7 @@ const Signup = () => {
                 >
                   User name
                 </label>
-                <div className="mt-2">
+                <div className="md:mt-2">
                   <input
                     value={userInfo.name}
                     onChange={handleName}
@@ -115,7 +115,7 @@ const Signup = () => {
                     id="text"
                     // autoComplete="text"
                     required=""
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                    className="block w-70 sm:w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
                 </div>
               </div>
@@ -126,7 +126,7 @@ const Signup = () => {
                 >
                   Email address
                 </label>
-                <div className="mt-2">
+                <div className="md:mt-2">
                   <input
                     value={userInfo.email}
                     onChange={handleEmail}
@@ -135,7 +135,7 @@ const Signup = () => {
                     id="email"
                     autoComplete="email"
                     required=""
-                    className="block rounded-md bg-white px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:w-full sm:text-sm/6"
+                    className="block rounded-md bg-white px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 w-70 sm:w-full sm:text-sm/6"
                   />
                 </div>
               </div>
@@ -147,16 +147,8 @@ const Signup = () => {
                   >
                     Password
                   </label>
-                  {/* <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-semibold text-white hover:text-indigo-500"
-                >
-                  Forgot password?
-                </a>
-              </div> */}
                 </div>
-                <div className="mt-2">
+                <div className="md:mt-2">
                   <input
                     value={userInfo.password}
                     onChange={handlePassword}
@@ -165,20 +157,20 @@ const Signup = () => {
                     id="password"
                     autoComplete="current-password"
                     required=""
-                    className="block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:w-full sm:text-sm/6"
+                    className="block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 w-70 sm:w-full sm:text-sm/6"
                   />
                 </div>
               </div>
               <div>
                 <button
                   type="submit"
-                  className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:w-full"
+                  className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:w-full mt-2"
                 >
                   Sign up
                 </button>
               </div>
             </form>
-            <p className="mt-10 text-center text-sm/6 font-semibold text-gray-900">
+            <p className="md:mt-10 sm:text-center text-sm/6 font-semibold text-gray-900">
               Have an account yet?
               <Link
                 to={"/signin"}
