@@ -93,12 +93,12 @@ const Signup = () => {
     <div className="font-[--font-Roboto] flex min-h-full w-screen sm:w-full flex-col justify-center bg-[url('../images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat h-screen">
       <Toaster />
       <div className="xl:w-[1300px] mx-auto">
-        <div className="w-80 sm:w-130 py-1 lg:py-20 pl-8 backdrop-blur-xl">
+        <div className="w-80 sm:w-130 py-5 sm:py-1 lg:py-20 px-5 sm:pl-8 backdrop-blur-xl">
           <h2 className="mt-2 lg:mt-10 ml-10 text-xl lg:text-2xl/9 font-bold tracking-tight text-white">
             Sign up
           </h2>
           <div className="mt-2.5 lg:mt-10 sm:ml-10 sm:w-full sm:max-w-sm">
-            <form onSubmit={handleSignup} className="space-y-1 md:space-y-6" method="POST">
+            <form onSubmit={handleSignup} className="space-y-4 sm:space-y-1 md:space-y-6" method="POST">
               <div>
                 <label
                   htmlFor="text"
