@@ -70,7 +70,7 @@ const FriendListmsg = () => {
           ? filterResult.map((item) => (
               <div
                 onClick={() => handleSelectuser(item)}
-                className={`flex flex-row items-center justify-center gap-2 border-b-2 border-indigo-400 px-2 py-4 ${user?.id == item.senderid || user?.id == item.receiverid ? "bg-indigo-700" : "bg-transparent"}`}
+                className={`flex gap-2 border-b-2 border-indigo-400 px-2 py-4 ${user?.id == item.senderid || user?.id == item.receiverid ? "bg-indigo-700" : "bg-transparent"}`}
               >
                 <div>
                   <img
@@ -97,7 +97,7 @@ const FriendListmsg = () => {
           : friendlist.map((item) => (
               <div
                 onClick={() => handleSelectuser(item)}
-                className={`flex flex-row items-center justify-center gap-2 border-b-2 border-indigo-400 px-2 py-4 ${user?.id == item.senderid || user?.id == item.receiverid ? "bg-indigo-700" : "bg-transparent"}`}
+                className={`flex gap-2 border-b-2 border-indigo-400 px-2 py-4 ${user?.id == item.senderid || user?.id == item.receiverid ? "bg-indigo-700" : "bg-transparent"}`}
               >
                 <div>
                   <img
