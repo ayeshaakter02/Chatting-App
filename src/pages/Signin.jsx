@@ -101,16 +101,16 @@ const Signin = () => {
     <div className="font-[--font-Roboto] flex min-h-full flex-col justify-center bg-[url('../images/Signup_image.jpg')] bg-cover bg-center bg-no-repeat h-screen">
       <Toaster />
       <div className="xl:w-[1300px] mx-auto">
-        <div className="w-130 py-20 pl-10 backdrop-blur-xl">
+        <div className="w-80 sm:w-130 py-7 sm:py-1 md:py-5 xl:py-20 px-3 sm:pl-10 backdrop-blur-xl">
           <div className="sm:w-full sm:max-w-sm">
-            <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
+            <h2 className="mt-1 lg:mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
               Sign in to your account
             </h2>
           </div>
-          <div className="mt-10 sm:w-full sm:max-w-sm">
+          <div className="mt-2.5 lg:mt-10 sm:w-full sm:max-w-sm">
             <form
               onSubmit={handleSignin}
-              className="space-y-6"
+              className="space-y-5 sm:space-y-2 md:space-y-6"
               action="#"
               method="POST"
             >
@@ -121,7 +121,7 @@ const Signin = () => {
                 >
                   Email address
                 </label>
-                <div className="mt-2">
+                <div className="md:mt-2">
                   <input
                     onChange={handleEmail}
                     type="email"
@@ -150,7 +150,7 @@ const Signin = () => {
                     </a>
                   </div>
                 </div>
-                <div className="mt-2">
+                <div className="md:mt-2">
                   <input
                     onChange={handlePassword}
                     type="password"
@@ -169,20 +169,20 @@ const Signin = () => {
                 >
                   Sign in
                 </button>
-                <p className="mt-2 flex justify-center text-lg font-semibold">
+                <p className="md:mt-2 flex justify-center text-lg font-semibold">
                   or
                 </p>
                 <button
                   onClick={handleGoogleSignin}
                   type="submit"
-                  className="mx-auto mt-2 flex cursor-pointer items-center font-semibold"
+                  className="mx-auto md:mt-2 flex cursor-pointer items-center font-semibold"
                 >
                   <FcGoogle className="mr-2 text-xl" />
                   Continue with google
                 </button>
               </div>
             </form>
-            <p className="mt-10 text-center text-sm/6 font-normal text-gray-900">
+            <p className="md:mt-10 text-center text-sm/6 font-normal text-gray-900">
               Don't have an account?
               <Link
                 to={"/signup"}
