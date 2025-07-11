@@ -11,7 +11,7 @@ const Homebar = () => {
     <div className="xl:hidden">
       <nav class=" backdrop-blur-xl">
         <div class="md:w-auto" id="navbar-default">
-          <ul class="mt-1 flex flex-row justify-center rounded-lg p-4 font-medium rtl:space-x-reverse gap-3">
+          <ul class="sm:mt-0 mt-2 md:mt-2 flex flex-row justify-center rounded-lg p-4 sm:py-0.5 md:py-4 font-medium rtl:space-x-reverse gap-3">
             <li>
               <Link
                 to={"/"}
