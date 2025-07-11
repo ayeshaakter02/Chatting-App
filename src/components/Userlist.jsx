@@ -86,7 +86,7 @@ const Userlist = () => {
               View all
             </a>
           </div>
-          <div className="flow-root h-[300px] sm:h-40 md:h-[300px] overflow-y-scroll">
+          <div className="flow-root h-[330px] sm:h-40 md:h-[300px] overflow-y-scroll">
             {userList.map((item) => {
               return (
                 <ul role="list" className="">

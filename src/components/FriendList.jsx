@@ -73,7 +73,7 @@ const FriendList = () => {
           <div className="flow-root">
             <ul
               role="list"
-              className="h-[300px] sm:h-40 md:h-[300px] divide-y divide-gray-200 overflow-y-scroll dark:divide-gray-700"
+              className="h-[330px] sm:h-40 md:h-[300px] divide-y divide-gray-200 overflow-y-scroll dark:divide-gray-700"
             >
               {requestList.map((item) => (
                 <li className="py-3 sm:py-4">
