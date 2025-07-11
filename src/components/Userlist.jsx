@@ -74,7 +74,7 @@ const Userlist = () => {
     <>
       {/* This is an example component */}
       <div className="sm:ml-15 md:ml-30 xl:ml-0 md:w-150 xl:w-auto md:mt-20 xl:mt-0">
-        <div className="max-w-lg rounded-lg border p-4 shadow-md sm:p-8 dark:border-gray-700 dark:bg-gray-800 backdrop-blur-xl">
+        <div className="max-w-lg rounded-lg border p-4 sm:py-1.5 shadow-md md:p-8 dark:border-gray-700 dark:bg-gray-800 backdrop-blur-xl">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-xl leading-none font-bold text-white dark:text-white">
               User List
@@ -86,7 +86,7 @@ const Userlist = () => {
               View all
             </a>
           </div>
-          <div className="flow-root h-[300px] overflow-y-scroll">
+          <div className="flow-root h-[300px] sm:h-40 md:h-[300px] overflow-y-scroll">
             {userList.map((item) => {
               return (
                 <ul role="list" className="">
