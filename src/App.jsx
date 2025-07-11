@@ -10,6 +10,11 @@ import Rootlayout from './components/Rootlayout';
 import Message from './pages/Message';
 import Signup from './pages/Signup';
 import { Emoji } from 'emoji-picker-react';
+import FriendList from './components/FriendList';
+import FriendRequestList from './components/FriendRequestList';
+import Userlist from './components/Userlist';
+import BlockList from './components/Blocklist';
+import Homebar from './components/Homebar';
 
 const router =createBrowserRouter([
   {
@@ -18,6 +23,16 @@ const router =createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "/message", Component: Message },
+    ],
+  },
+  {
+    path: "/",
+    Component: Rootlayout,
+    children: [
+      { index: true, Component: FriendList},
+      { path: "/friendrequest", Component: FriendRequestList },
+      { path: "/userlist", Component: Userlist },
+      { path: "/blocklist", Component: BlockList },
     ],
   },
   {

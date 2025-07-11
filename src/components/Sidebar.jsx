@@ -1,5 +1,5 @@
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { userSigninInfo } from "../slices/userSlice";
 import { Link, useNavigate } from "react-router";
@@ -47,12 +47,12 @@ const Sidebar = () => {
     <>
       <div
         id="hs-sidebar-collapsible-group"
-        className="hs-overlay h-full w-70 transform border-e border-gray-200 transition-all duration-300 lg:end-auto lg:bottom-0 lg:block dark:border-neutral-700 dark:bg-neutral-800 backdrop-blur-xl"
+        className="hs-overlay lg:h-full lg:w-70 transform border-e border-gray-200 transition-all duration-300 lg:end-auto lg:bottom-0 lg:block dark:border-neutral-700 dark:bg-neutral-800 backdrop-blur-xl"
         role="dialog"
         tabIndex={-1}
         aria-label="Sidebar"
       >
-        <div className="relative flex h-full max-h-full flex-col">
+        <div className="relative flex xl:h-full max-h-full flex-col">
           {/* Header */}
           <header className="flex items-center justify-between gap-x-2 p-4">
             <a
@@ -64,7 +64,7 @@ const Sidebar = () => {
             </a>
             <div className="-me-2 lg:hidden">
               {/* Close Button */}
-              <button
+              {/* <button
                 type="button"
                 className="flex size-6 items-center justify-center gap-x-3 rounded-full border border-gray-200 bg-white text-sm text-gray-600 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-200 dark:focus:bg-neutral-700 dark:focus:text-neutral-200"
                 data-hs-overlay="#hs-sidebar-collapsible-group"
@@ -85,18 +85,18 @@ const Sidebar = () => {
                   <path d="m6 6 12 12" />
                 </svg>
                 <span className="sr-only">Close</span>
-              </button>
+              </button> */}
               {/* End Close Button */}
             </div>
           </header>
           {/* End Header */}
           {/* Body */}
-          <nav className="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-neutral-700">
+          <nav className="lg:h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-neutral-700">
             <div
               className="hs-accordion-group flex w-full flex-col flex-wrap px-2 pb-0"
               data-hs-accordion-always-open=""
             >
-              <ul className="space-y-1">
+              <ul className="space-y-1 flex lg:flex-col gap-2.5">
                 <li>
                   <Link to="/"
                     className={`flex items-center gap-x-3 px-2.5 py-2 ${pathname == "/" && "bg-indigo-600 text-white"} rounded-lg text-md   focus:outline-hidden hover:bg-indigo-600 text-white`}
@@ -159,160 +159,6 @@ const Sidebar = () => {
                       <path d="m18 15-6-6-6 6" />
                     </svg>
                   </Link>
-                  <div
-                    id="users-accordion-collapse-1"
-                    className="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300"
-                    role="region"
-                    aria-labelledby="users-accordion"
-                  >
-                    <ul
-                      className="hs-accordion-group space-y-1 ps-7 pt-1"
-                      data-hs-accordion-always-open=""
-                    >
-                      <li className="hs-accordion" id="users-accordion-sub-1">
-                        <button
-                          type="button"
-                          className="hs-accordion-toggle flex w-full items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-start text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                          aria-expanded="true"
-                          aria-controls="users-accordion-sub-1-collapse-1"
-                        >
-                          Sub Menu 1
-                          <svg
-                            className="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width={24}
-                            height={24}
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="m18 15-6-6-6 6" />
-                          </svg>
-                          <svg
-                            className="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width={24}
-                            height={24}
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="m6 9 6 6 6-6" />
-                          </svg>
-                        </button>
-                        <div
-                          id="users-accordion-sub-1-collapse-1"
-                          className="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300"
-                          role="region"
-                          aria-labelledby="users-accordion-sub-1"
-                        >
-                          <ul className="space-y-1 ps-2 pt-1">
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                href="#"
-                              >
-                                Link 1
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                href="#"
-                              >
-                                Link 2
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                href="#"
-                              >
-                                Link 3
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                      <li className="hs-accordion" id="users-accordion-sub-2">
-                        <button
-                          type="button"
-                          className="hs-accordion-toggle flex w-full items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-start text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                          aria-expanded="true"
-                          aria-controls="users-accordion-sub-2-collapse-1"
-                        >
-                          Sub Menu 2
-                          <svg
-                            className="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width={24}
-                            height={24}
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="m18 15-6-6-6 6" />
-                          </svg>
-                          <svg
-                            className="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width={24}
-                            height={24}
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="m6 9 6 6 6-6" />
-                          </svg>
-                        </button>
-                        <div
-                          id="users-accordion-sub-2-collapse-1"
-                          className="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300"
-                          role="region"
-                          aria-labelledby="users-accordion-sub-2"
-                        >
-                          <ul className="space-y-1 ps-2 pt-1">
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                href="#"
-                              >
-                                Link 1
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                href="#"
-                              >
-                                Link 2
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                className="flex items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                href="#"
-                              >
-                                Link 3
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
                 </li>
                 <li>
                   <button

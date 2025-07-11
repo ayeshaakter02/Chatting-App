@@ -57,7 +57,7 @@ const FriendList = () => {
     <>
       {/* component */}
       {/* This is an example component */}
-      <div>
+      <div className="md:ml-30 xl:ml-0 md:w-150 xl:w-auto md:mt-20 xl:mt-0">
         <div className="max-w-lg rounded-lg border p-4 shadow-md backdrop-blur-xl sm:p-8">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-xl leading-none font-bold text-white">

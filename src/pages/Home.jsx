@@ -3,25 +3,22 @@ import Userlist from "../components/Userlist";
 import FriendRequestList from "../components/FriendRequestList";
 import FriendList from "../components/FriendList";
 import BlockList from "../components/Blocklist";
+import Homebar from "../components/Homebar";
 // import { useSelector } from 'react-redux'
 
 const Home = () => {
-  // const data = useSelector((state)=> state.userSignin.value)
-  // console.log(data)
-
-  // useEffect(() =>{
-  //   if(!data){
-  //     navigate("/signin",)
-  //   }
-  // } ,[]);
-
   return (
-    <div className="mt-5 lg:grid w-full grid-cols-2 gap-2">
-      <FriendList />
-      <FriendRequestList />
-      <Userlist />
-      <BlockList />
-    </div>
+    <>
+      <div className="mt-10 w-full xl:gap-2 xl:grid xl:grid-cols-2 hidden">
+        <FriendList />
+        <FriendRequestList />
+        <Userlist />
+        <BlockList />
+      </div>
+      <div className="xl:hidden ">
+        <FriendList />
+      </div>
+    </>
   );
 };
 
