@@ -29,7 +29,7 @@ const router =createBrowserRouter([
     path: "/",
     Component: Rootlayout,
     children: [
-      { index: true, Component: FriendList},
+      { index: true, Component: Homebar},
       { path: "/friendrequest", Component: FriendRequestList },
       { path: "/userlist", Component: Userlist },
       { path: "/blocklist", Component: BlockList },
