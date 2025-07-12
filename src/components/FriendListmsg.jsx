@@ -54,7 +54,7 @@ const FriendListmsg = () => {
 
   return (
     <div>
-      <div className="flex h-210 w-60 flex-col overflow-y-scroll border-r-2 border-indigo-400">
+      <div className="flex h-115 xl:h-210 xl:w-60 flex-col overflow-y-scroll border-r-2 border-indigo-400">
         {/* search compt */}
         <div className="border-b-2 border-indigo-400 px-2 py-4">
           <input
@@ -89,8 +89,6 @@ const FriendListmsg = () => {
                       {item.sendername}
                     </div>
                   )}
-
-                  <span className="text-gray-400">Pick me at 9:00 Am</span>
                 </div>
               </div>
             ))

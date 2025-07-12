@@ -15,6 +15,7 @@ import FriendRequestList from './components/FriendRequestList';
 import Userlist from './components/Userlist';
 import BlockList from './components/Blocklist';
 import Homebar from './components/Homebar';
+import FriendListmsg from './components/FriendListmsg';
 
 const router =createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router =createBrowserRouter([
     path: "/",
     Component: Rootlayout,
     children: [
-      { index: true, Component: Homebar},
+      { index: true, Component: Home},
       { path: "/friendrequest", Component: FriendRequestList },
       { path: "/userlist", Component: Userlist },
       { path: "/blocklist", Component: BlockList },
@@ -38,6 +39,10 @@ const router =createBrowserRouter([
   {
     path: "/signin",
     Component: Signin,
+  },
+  {
+    path: "/msglist",
+    Component: Message,
   },
   {
     path: "/emoji",

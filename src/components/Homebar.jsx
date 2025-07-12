@@ -15,8 +15,8 @@ const Homebar = () => {
             <li>
               <Link
                 to={"/"}
-                class={`block rounded-sm ${pathname == "/" && "bg-indigo-600 text-white"} px-3 py-2 text-white   dark:text-white md:dark:text-blue-500`}
-                aria-current="page"
+                className={`block rounded-sm ${pathname == "/" && "bg-indigo-600 text-white"} px-3 py-2 text-white   dark:text-white `}
+                // aria-current="page"
               >
                 {/* Friend List */}
                 <FaUserFriends />
@@ -25,7 +25,7 @@ const Homebar = () => {
             <li>
               <Link
                 to={"/friendrequest"}
-                class={`block rounded-sm ${pathname == "/friendrequest" && "bg-indigo-600 text-white"} px-3 py-2 text-white dark:text-white md:dark:text-blue-500`}
+                className={`block rounded-sm ${pathname == "/friendrequest" && "bg-indigo-600 text-white"} px-3 py-2 text-white dark:text-white`}
               >
                 {/* Friend Request List */}
                 <FaCodePullRequest />
@@ -34,7 +34,7 @@ const Homebar = () => {
             <li>
               <Link
                 to={"/userlist"}
-                class={`block rounded-sm ${pathname == "/userlist" && "bg-indigo-600 text-white"} px-3 py-2 text-white  dark:text-white md:dark:text-blue-500`}
+                className={`block rounded-sm ${pathname == "/userlist" && "bg-indigo-600 text-white"} px-3 py-2 text-white  dark:text-white `}
               >
                 {/* User List */}
                 <FaUser />
@@ -43,7 +43,7 @@ const Homebar = () => {
             <li>
               <Link
                 to={"/blocklist"}
-                class={`block rounded-sm ${pathname == "/blocklist" && "bg-indigo-600 text-white"} px-3 py-2 text-white  dark:text-white md:dark:text-blue-500`}
+                className={`block rounded-sm ${pathname == "/blocklist" && "bg-indigo-600 text-white"} px-3 py-2 text-white  dark:text-white md:dark:text-blue-500`}
               >
                 {/* Block List */}
                 <MdOutlineBlock />
