@@ -25,7 +25,6 @@ const Homebar = () => {
                 to={"/friendrequest"}
                 className={`block rounded-sm ${pathname == "/friendrequest" && "bg-indigo-600 text-white"} px-3 py-2 text-white dark:text-white`}
               >
-                {/* Friend Request List */}
                 <FaCodePullRequest />
               </Link>
             </li>
