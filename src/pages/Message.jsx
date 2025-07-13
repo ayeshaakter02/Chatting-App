@@ -9,7 +9,7 @@ import moment from "moment";
 import { Link } from "react-router";
 import EmojiPicker from "emoji-picker-react";
 import { MdEmojiEmotions } from "react-icons/md";
-// import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 const Message = () => {
   const db = getDatabase();
   const user = useSelector((state) => state.chatInfo.value);
