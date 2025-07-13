@@ -41,7 +41,6 @@ const Homebar = () => {
                 to={"/blocklist"}
                 className={`block rounded-sm ${pathname == "/blocklist" && "bg-indigo-600 text-white"} px-3 py-2 text-white  dark:text-white md:dark:text-blue-500`}
               >
-                {/* Block List */}
                 <MdOutlineBlock />
               </Link>
             </li>

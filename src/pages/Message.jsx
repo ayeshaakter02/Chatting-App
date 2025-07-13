@@ -138,7 +138,7 @@ const Message = () => {
                   )}
                   <textarea
                     onChange={handleMsg}
-                    className="fixed -mt-12 w-5/6 rounded-xl bg-indigo-200 px-10 py-2"
+                    className="fixed -mt-14 w-5/7 md:w-6/8 lg:w-5/7 xl:w-5/6 rounded-xl bg-indigo-200 px-10 py-2"
                     type="text"
                     value={msg}
                     placeholder="Type your message here..."
