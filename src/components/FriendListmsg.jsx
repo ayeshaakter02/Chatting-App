@@ -54,7 +54,7 @@ const FriendListmsg = () => {
 
   return (
     <div>
-      <div className="flex h-115 xl:h-210 xl:w-60 flex-col overflow-y-scroll border-r-2 border-indigo-400">
+      <div className="flex h-110 sm:h-50 md:h-150 xl:h-210 xl:w-60 flex-col overflow-y-scroll border-r-2 border-indigo-400">
         {/* search compt */}
         <div className="border-b-2 border-indigo-400 px-2 py-4">
           <input
@@ -72,7 +72,7 @@ const FriendListmsg = () => {
                 onClick={() => handleSelectuser(item)}
                 className={`flex gap-2 border-b-2 border-indigo-400 px-2 py-4 ${user?.id == item.senderid || user?.id == item.receiverid ? "bg-indigo-700" : "bg-transparent"}`}
               >
-                <div>
+                <div className="hidden sm:flex">
                   <img
                     className="h-8 w-8 rounded-full"
                     src="images/user.jpg"
@@ -97,7 +97,7 @@ const FriendListmsg = () => {
                 onClick={() => handleSelectuser(item)}
                 className={`flex gap-2 border-b-2 border-indigo-400 px-2 py-4 ${user?.id == item.senderid || user?.id == item.receiverid ? "bg-indigo-700" : "bg-transparent"}`}
               >
-                <div>
+                <div className="hidden sm:flex">
                   <img
                     className="h-8 w-8 rounded-full"
                     src="images/user.jpg"

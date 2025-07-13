@@ -67,26 +67,29 @@ const Message = () => {
       {/* component */}
       {/* This is an example component */}
       <div className="m-3 mx-auto w-full rounded-lg shadow-lg backdrop-blur-xl">
-
         {/* Chatting */}
         <div className="flex flex-row justify-between">
           {/* chat list */}
-          <div>
-            <div className="text-3xl font-bold text-indigo-500">GoingChat</div>
+          <div className="">
+            <div className="text-2xl font-bold text-indigo-500 md:text-3xl">
+              GoingChat
+            </div>
             <FriendListmsg />
           </div>
 
           {/* end chat list */}
           {/* message */}
-          <div className="flex w-full flex-col justify-between px-5">
-            <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5">
-              <IoIosArrowBack className="xl:hidden text-2xl font-semibold text-indigo-500" />
-              <h1 className="text-2xl font-semibold text-indigo-500">
+
+          <div className="w-full flex-col justify-between px-5 xl:flex">
+            <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-2 xl:py-5">
+              <IoIosArrowBack className="text-3xl font-semibold text-indigo-500 sm:hidden" />
+              
+              <h1 className="text-xl md:text-3xl font-semibold text-indigo-500">
                 {user?.name}
               </h1>
             </div>
 
-            <div className="mt-5 mr-0 flex h-180 flex-col overflow-y-scroll">
+            <div className="mt-5 mr-0 flex h-90 sm:h-40 md:h-170 lg:h-135 xl:h-180 flex-col overflow-y-scroll">
               {msglist.map((msgitem) =>
                 msgitem.senderid == auth.currentUser.uid ? (
                   <div className="mb-4">
@@ -129,10 +132,10 @@ const Message = () => {
                 <div className="relative inline-block py-5">
                   <MdEmojiEmotions
                     onClick={handleEmoji}
-                    className="absolute z-1 -mt-7 ml-3 text-2xl text-indigo-700"
+                    className="absolute z-1 -mt-8 ml-3 text-2xl text-indigo-700 xl:-mt-4"
                   />
                   {showPicker && (
-                    <div className="absolute -mt-125">
+                    <div className="absolute -mt-128">
                       <EmojiPicker
                         onEmojiClick={handleEmojiClick}
                         searchDisabled={true}
@@ -143,14 +146,14 @@ const Message = () => {
                   )}
                   <textarea
                     onChange={handleMsg}
-                    className="fixed -mt-14 w-5/7 rounded-xl bg-indigo-200 px-10 py-2 md:w-6/8 lg:w-5/7 xl:w-5/6"
+                    className="fixed -mt-10 w-7/13 rounded-xl bg-indigo-200 px-10 py-2  md:w-5/7 lg:w-5/7 xl:-mt-8 xl:w-6/8"
                     type="text"
                     value={msg}
                     placeholder="Type your message here..."
                   />
                   <button
                     onClick={handleSendmsg}
-                    className="absolute z-1 -mt-6 text-2xl text-indigo-700 lg:ml-330"
+                    className="absolute ml-42 sm:ml-87 md:ml-125 lg:ml-138 xl:ml-280 z-1 -mt-8 text-2xl text-indigo-700  xl:-mt-4"
                   >
                     <RiSendPlaneFill />
                   </button>
@@ -158,6 +161,7 @@ const Message = () => {
               </div>
             )}
           </div>
+
           {/* end message */}
         </div>
       </div>

@@ -45,6 +45,10 @@ const router =createBrowserRouter([
     Component: Message,
   },
   {
+    path: "/friendListmsg",
+    Component: FriendListmsg,
+  },
+  {
     path: "/emoji",
     Component: Emoji,
   },
