@@ -9,6 +9,7 @@ import moment from "moment";
 import { Link } from "react-router";
 import EmojiPicker from "emoji-picker-react";
 import { MdEmojiEmotions } from "react-icons/md";
+// import { IoIosArrowBack } from "react-icons/io";
 const Message = () => {
   const db = getDatabase();
   const user = useSelector((state) => state.chatInfo.value);
@@ -66,21 +67,25 @@ const Message = () => {
       {/* component */}
       {/* This is an example component */}
       <div className="m-3 mx-auto w-full rounded-lg shadow-lg backdrop-blur-xl">
-        {/* headaer */}
-        <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5">
-          <div className="text-3xl font-bold text-indigo-500">GoingChat</div>
-          <h1 className="text-2xl font-semibold text-indigo-500">
-            {user?.name}
-          </h1>
-        </div>
-        {/* end header */}
+
         {/* Chatting */}
         <div className="flex flex-row justify-between">
           {/* chat list */}
-          <FriendListmsg />
+          <div>
+            <div className="text-3xl font-bold text-indigo-500">GoingChat</div>
+            <FriendListmsg />
+          </div>
+
           {/* end chat list */}
           {/* message */}
           <div className="flex w-full flex-col justify-between px-5">
+            <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5">
+              {/* <IoIosArrowBack className="xl:hidden text-2xl font-semibold text-indigo-500" /> */}
+              <h1 className="text-2xl font-semibold text-indigo-500">
+                {user?.name}
+              </h1>
+            </div>
+
             <div className="mt-5 mr-0 flex h-180 flex-col overflow-y-scroll">
               {msglist.map((msgitem) =>
                 msgitem.senderid == auth.currentUser.uid ? (
@@ -138,7 +143,7 @@ const Message = () => {
                   )}
                   <textarea
                     onChange={handleMsg}
-                    className="fixed -mt-14 w-5/7 md:w-6/8 lg:w-5/7 xl:w-5/6 rounded-xl bg-indigo-200 px-10 py-2"
+                    className="fixed -mt-14 w-5/7 rounded-xl bg-indigo-200 px-10 py-2 md:w-6/8 lg:w-5/7 xl:w-5/6"
                     type="text"
                     value={msg}
                     placeholder="Type your message here..."
