@@ -80,7 +80,7 @@ const Message = () => {
           {/* message */}
           <div className="flex w-full flex-col justify-between px-5">
             <div className="flex items-center justify-between border-b-2 border-indigo-400 px-5 py-5">
-              {/* <IoIosArrowBack className="xl:hidden text-2xl font-semibold text-indigo-500" /> */}
+              <IoIosArrowBack className="xl:hidden text-2xl font-semibold text-indigo-500" />
               <h1 className="text-2xl font-semibold text-indigo-500">
                 {user?.name}
               </h1>
