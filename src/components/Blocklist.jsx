@@ -62,12 +62,6 @@ const BlockList = () => {
             <h3 className="text-xl leading-none font-bold text-white dark:text-white">
               Block List
             </h3>
-            <a
-              href="#"
-              className="text-md font-medium text-indigo-500 hover:underline dark:text-blue-500"
-            >
-              View all
-            </a>
           </div>
           <div className="flow-root">
             <ul

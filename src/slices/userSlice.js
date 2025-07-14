@@ -6,8 +6,6 @@ import { auth } from "../firebase.config";
 const initialState = {
   value: auth.currentUser,
   // value: localStorage.getItem("signin")
-  //   ? JSON.parse(localStorage.getItem("signin"))
-  //   : '',
 };
 
 export const userSlice = createSlice({
