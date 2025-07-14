@@ -68,7 +68,6 @@ const Signup = () => {
               })
               .catch((error) => {
                 // An error occurred
-                // ...
                 console.log(error);
               });
           });
