@@ -91,7 +91,7 @@ const Signin = () => {
         navigate("/");
       })
       .catch((error) => {
-        //Handle errors here
+        // Handle errors here
         const errorCode = error.code;
         console.log(errorCode);
       });
